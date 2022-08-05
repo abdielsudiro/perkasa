@@ -1,7 +1,0 @@
-.DS_Store
-.idea
-composer.lock
-node_modules
-/userfiles
-/config/filemanager.config.json
-/config/filemanager.init.js
