@@ -1,0 +1,2199 @@
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+--
+-- Host: localhost    Database: perkasa
+-- ------------------------------------------------------
+-- Server version	8.0.27
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8  */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `action`
+--
+
+DROP TABLE IF EXISTS `action`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `action` (
+  `action_id` int NOT NULL,
+  `action_type_id` int DEFAULT NULL,
+  `process_id` int DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`action_id`) USING BTREE,
+  KEY `IXFK_action_action_type` (`action_type_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `action`
+--
+
+LOCK TABLES `action` WRITE;
+/*!40000 ALTER TABLE `action` DISABLE KEYS */;
+/*!40000 ALTER TABLE `action` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `action_target`
+--
+
+DROP TABLE IF EXISTS `action_target`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `action_target` (
+  `action_target_id` int NOT NULL,
+  `action_id` int DEFAULT NULL,
+  `target_id` int DEFAULT NULL,
+  `group_id` int DEFAULT NULL,
+  PRIMARY KEY (`action_target_id`) USING BTREE,
+  KEY `IXFK_action_target_action` (`action_id`) USING BTREE,
+  KEY `IXFK_action_target_target` (`target_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `action_target`
+--
+
+LOCK TABLES `action_target` WRITE;
+/*!40000 ALTER TABLE `action_target` DISABLE KEYS */;
+/*!40000 ALTER TABLE `action_target` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `action_type`
+--
+
+DROP TABLE IF EXISTS `action_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `action_type` (
+  `action_type_id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`action_type_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `action_type`
+--
+
+LOCK TABLES `action_type` WRITE;
+/*!40000 ALTER TABLE `action_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `action_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `activity`
+--
+
+DROP TABLE IF EXISTS `activity`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `activity` (
+  `activity_id` int NOT NULL,
+  `activity_type_id` int DEFAULT NULL,
+  `process_id` int DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`activity_id`) USING BTREE,
+  KEY `IXFK_activity_activity_type` (`activity_type_id`) USING BTREE,
+  KEY `IXFK_activity_group` (`process_id`) USING BTREE,
+  KEY `IXFK_activity_process` (`process_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `activity`
+--
+
+LOCK TABLES `activity` WRITE;
+/*!40000 ALTER TABLE `activity` DISABLE KEYS */;
+/*!40000 ALTER TABLE `activity` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `activity_target`
+--
+
+DROP TABLE IF EXISTS `activity_target`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `activity_target` (
+  `activity_target_id` int NOT NULL,
+  `activity_id` int DEFAULT NULL,
+  `target_id` int DEFAULT NULL,
+  `group_id` int DEFAULT NULL,
+  PRIMARY KEY (`activity_target_id`) USING BTREE,
+  KEY `IXFK_activity_target_activity` (`activity_id`) USING BTREE,
+  KEY `IXFK_activity_target_group` (`group_id`) USING BTREE,
+  KEY `IXFK_activity_target_target` (`target_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `activity_target`
+--
+
+LOCK TABLES `activity_target` WRITE;
+/*!40000 ALTER TABLE `activity_target` DISABLE KEYS */;
+/*!40000 ALTER TABLE `activity_target` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `activity_type`
+--
+
+DROP TABLE IF EXISTS `activity_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `activity_type` (
+  `activity_type_id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`activity_type_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `activity_type`
+--
+
+LOCK TABLES `activity_type` WRITE;
+/*!40000 ALTER TABLE `activity_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `activity_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `akun`
+--
+
+DROP TABLE IF EXISTS `akun`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `akun` (
+  `id` int NOT NULL,
+  `parent_id` int DEFAULT NULL,
+  `kode` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `kode_subkomponen` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `uraian` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `isSubAccount` tinyint(1) unsigned zerofill DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `parent_id` (`parent_id`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=1112115 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `akun`
+--
+
+LOCK TABLES `akun` WRITE;
+/*!40000 ALTER TABLE `akun` DISABLE KEYS */;
+INSERT INTO `akun` VALUES (1000000,NULL,'CQ',NULL,'Penyelenggaraan Pemilu dalam Proses Konsolidasi Demokrasi',0),(1100000,1000000,'3356',NULL,'Pengelolaan, Pengadaan, Laporan dan Dokumentasi Logistik',NULL),(1110000,1100000,'BAB',NULL,'Pelayanan Publik kepada  lembaga',0),(1111000,1110000,'010',NULL,'Pengelolaan Perencanaan dan Persiapan Logistik',NULL),(1111100,1111000,'005',NULL,'Dukungan Penyelenggaraan Tugas dan Fungsi Unit',NULL),(1111110,1111100,'AA',NULL,'Perencanaan dan Pengolahan Data Logistik Pemilu/Pemilihan',NULL),(1111111,1111110,'521211',NULL,'Belanja Bahan',NULL),(1112000,1110000,'011',NULL,'Pengelolaan Pengadaan Logistik',NULL),(1112100,1112000,'005',NULL,'Dukungan Penyelenggaraan Tugas dan Fungsi Unit',NULL),(1112110,1112100,'BA',NULL,'Fasilitasi Layanan Pengadaan Barang dan Jasa',NULL),(1112111,1112110,'521211',NULL,'Belanja Bahan',NULL),(1112112,1112110,'521213',NULL,'Belanja Honor Output Kegiatan',NULL),(1112113,1112110,'522151',NULL,'Belanja Jasa Profesi',NULL),(2000000,NULL,'WA',NULL,'Program Dukungan Manajemen',0),(2100000,2000000,'3355',NULL,'Pengelolaan Keuangan dan Barang Milik Negara',1),(1111112,1111110,'521212',NULL,'Belanja Bahan Perang',1);
+/*!40000 ALTER TABLE `akun` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `detail`
+--
+
+DROP TABLE IF EXISTS `detail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `detail` (
+  `detail_id` int NOT NULL,
+  `kode_akun` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `detail` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `volum` decimal(10,0) DEFAULT NULL,
+  `sbm` double(10,2) DEFAULT NULL COMMENT 'SBM (Standar Biaya Maksimum)',
+  PRIMARY KEY (`detail_id`) USING BTREE,
+  KEY `IXFK_detail_akun` (`kode_akun`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='table detail';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `detail`
+--
+
+LOCK TABLES `detail` WRITE;
+/*!40000 ALTER TABLE `detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `group`
+--
+
+DROP TABLE IF EXISTS `group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `group` (
+  `group_id` int NOT NULL,
+  `process_id` int DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`group_id`) USING BTREE,
+  KEY `IXFK_group_process` (`process_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `group`
+--
+
+LOCK TABLES `group` WRITE;
+/*!40000 ALTER TABLE `group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `group_member`
+--
+
+DROP TABLE IF EXISTS `group_member`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `group_member` (
+  `group_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  KEY `IXFK_group_member_group` (`group_id`) USING BTREE,
+  KEY `IXFK_group_member_users` (`user_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `group_member`
+--
+
+LOCK TABLES `group_member` WRITE;
+/*!40000 ALTER TABLE `group_member` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_member` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `kegiatan`
+--
+
+DROP TABLE IF EXISTS `kegiatan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `kegiatan` (
+  `id` int NOT NULL,
+  `kode_kegiatan` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_program` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `nama_kegiatan` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `IXFK_kegiatan_program` (`kode_program`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='tabel kegiatan';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `kegiatan`
+--
+
+LOCK TABLES `kegiatan` WRITE;
+/*!40000 ALTER TABLE `kegiatan` DISABLE KEYS */;
+INSERT INTO `kegiatan` VALUES (1,'3356','076.CQ','Pengelolaan, Pengadaan, Laporan dan Dokumentasi Logistik');
+/*!40000 ALTER TABLE `kegiatan` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `komponen`
+--
+
+DROP TABLE IF EXISTS `komponen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `komponen` (
+  `kode_komponen` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `id` int NOT NULL,
+  `kode_ro` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `nama_komponen` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `IXFK_komponen_ro` (`kode_ro`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='tabel komponen';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `komponen`
+--
+
+LOCK TABLES `komponen` WRITE;
+/*!40000 ALTER TABLE `komponen` DISABLE KEYS */;
+INSERT INTO `komponen` VALUES ('005',0,'10','Dukungan Penyelenggaraan Tugas dan Fungsi Unit');
+/*!40000 ALTER TABLE `komponen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `kro`
+--
+
+DROP TABLE IF EXISTS `kro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `kro` (
+  `id` int NOT NULL,
+  `kode_kro` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `kode_kegiatan` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `nama_kro` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `IXFK_kro_kegiatan` (`kode_kegiatan`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='table KRO (Klasifikasi Rincian Output)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `kro`
+--
+
+LOCK TABLES `kro` WRITE;
+/*!40000 ALTER TABLE `kro` DISABLE KEYS */;
+INSERT INTO `kro` VALUES (0,'BAB','3356','Pelayanan Publik kepada  lembaga');
+/*!40000 ALTER TABLE `kro` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `penelaah_note`
+--
+
+DROP TABLE IF EXISTS `penelaah_note`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `penelaah_note` (
+  `approval_note_id` int NOT NULL,
+  `approval_note` text CHARACTER SET utf8 COLLATE utf8_bin,
+  PRIMARY KEY (`approval_note_id`) USING BTREE,
+  KEY `penelaah_note_approval_note_id_index` (`approval_note_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `penelaah_note`
+--
+
+LOCK TABLES `penelaah_note` WRITE;
+/*!40000 ALTER TABLE `penelaah_note` DISABLE KEYS */;
+/*!40000 ALTER TABLE `penelaah_note` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `process`
+--
+
+DROP TABLE IF EXISTS `process`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `process` (
+  `process_id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'nama process.',
+  PRIMARY KEY (`process_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `process`
+--
+
+LOCK TABLES `process` WRITE;
+/*!40000 ALTER TABLE `process` DISABLE KEYS */;
+/*!40000 ALTER TABLE `process` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `process_admin`
+--
+
+DROP TABLE IF EXISTS `process_admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `process_admin` (
+  `process_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  KEY `IXFK_process_admin_process` (`process_id`) USING BTREE,
+  KEY `IXFK_process_admin_users` (`user_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `process_admin`
+--
+
+LOCK TABLES `process_admin` WRITE;
+/*!40000 ALTER TABLE `process_admin` DISABLE KEYS */;
+/*!40000 ALTER TABLE `process_admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `program`
+--
+
+DROP TABLE IF EXISTS `program`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `program` (
+  `id` int NOT NULL,
+  `kode_program` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `nama_program` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `program_id_index` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='tabel program';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `program`
+--
+
+LOCK TABLES `program` WRITE;
+/*!40000 ALTER TABLE `program` DISABLE KEYS */;
+INSERT INTO `program` VALUES (1,'076.CQ','Penyelenggaraan Pemilu dalam Proses Konsolidasi Demokrasi'),(2,'076.WA','Program Dukungan Manajemen');
+/*!40000 ALTER TABLE `program` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rab`
+--
+
+DROP TABLE IF EXISTS `rab`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `rab` (
+  `id_rab` int NOT NULL AUTO_INCREMENT,
+  `kode_program` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_kegiatan` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_kro` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_ro` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_komponen` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_subkomponen` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `satker_id` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'status RAB',
+  `request_file_id` int DEFAULT NULL,
+  `id_statuses` int DEFAULT NULL,
+  `filename` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `isApprovalAgree` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `isPenelaahAgree` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id_rab`) USING BTREE,
+  KEY `rab_id_rab_index` (`id_rab`)
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rab`
+--
+
+LOCK TABLES `rab` WRITE;
+/*!40000 ALTER TABLE `rab` DISABLE KEYS */;
+INSERT INTO `rab` VALUES (14,'076.CQ','3356','BAB','10','005','AA','656947','menunggu',NULL,2,'forms-budget-request(2).pdf,RINCIAN KERTAS KERJA SATKER.pdf','ya',NULL),(15,'076.CQ','3356','BAB','10','005','AA','656951','menunggu',NULL,2,NULL,'ya','ya'),(16,'076.CQ','3356','BAB','10','005','AA','656989','menunggu',NULL,2,'KAKTAH_1(1).PDF',NULL,NULL),(17,'076.CQ','3356','BAB','10','005',NULL,'657075','menunggu',1000,2,'rab(2).xls,PAGU 2022 29-07-2022.xlsx',NULL,NULL),(30,'076.CQ','3356','BAB','10','005','AA','656972','menunggu',NULL,2,'PAGU 2022 29-07-2022 (9).xlsx',NULL,NULL),(32,'076.CQ','3356','BAB','10','005','AA','657811',NULL,NULL,1,NULL,NULL,NULL),(33,'076.CQ','3356','BAB','10','005','AA','656947',NULL,NULL,1,'KK MARJONO.pdf',NULL,NULL),(34,'076.CQ','3356','BAB','10','005','AA','656947',NULL,NULL,2,NULL,NULL,NULL),(35,'076.CQ','3356','BAB','10','005','AA','657164',NULL,NULL,2,'KK MARJONO(1).pdf',NULL,NULL);
+/*!40000 ALTER TABLE `rab` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rab_detail`
+--
+
+DROP TABLE IF EXISTS `rab_detail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `rab_detail` (
+  `id` int NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `rab_detail_id_index` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rab_detail`
+--
+
+LOCK TABLES `rab_detail` WRITE;
+/*!40000 ALTER TABLE `rab_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rab_detail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rab_file`
+--
+
+DROP TABLE IF EXISTS `rab_file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `rab_file` (
+  `id_rab_file` int NOT NULL AUTO_INCREMENT,
+  `id_rab` int DEFAULT NULL,
+  `filename` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id_rab_file`) USING BTREE,
+  KEY `rab_file_id_rab_file_index` (`id_rab_file`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rab_file`
+--
+
+LOCK TABLES `rab_file` WRITE;
+/*!40000 ALTER TABLE `rab_file` DISABLE KEYS */;
+INSERT INTO `rab_file` VALUES (1,14,'KAK TAHUN 2022 (INDUK) - Sarpras-Operasional Perkantoran_EDIT.pdf'),(2,14,'KAKTAH_1.PDF'),(3,14,'Realisasi Belanja per Jenis Kegiatan.pdf'),(4,17,'PAGU 2022 29-07-2022 (10).xlsx'),(5,30,'PAGU 2022 29-07-2022 (11).xlsx'),(6,15,'RINCIAN KERTAS KERJA SATKER.pdf');
+/*!40000 ALTER TABLE `rab_file` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rab_kegiatan2`
+--
+
+DROP TABLE IF EXISTS `rab_kegiatan2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `rab_kegiatan2` (
+  `rab_kegiatan_id` int NOT NULL AUTO_INCREMENT,
+  `satker_id` int DEFAULT NULL,
+  `kode_kegiatan` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_kro` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_ro` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_komponen` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `kode_subkomponen` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `total_biaya` double(15,2) DEFAULT NULL,
+  `reviewer_note_id` int DEFAULT NULL,
+  `approval_note_id` int DEFAULT NULL,
+  PRIMARY KEY (`rab_kegiatan_id`) USING BTREE,
+  KEY `IXFK_rab_kegiatan_kegiatan` (`kode_kegiatan`) USING BTREE,
+  KEY `IXFK_rab_kegiatan_komponen` (`kode_komponen`) USING BTREE,
+  KEY `IXFK_rab_kegiatan_kro` (`kode_kro`) USING BTREE,
+  KEY `IXFK_rab_kegiatan_ro` (`kode_ro`) USING BTREE,
+  KEY `IXFK_rab_kegiatan_satker` (`satker_id`) USING BTREE,
+  KEY `IXFK_rab_kegiatan_subkomponen` (`kode_subkomponen`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rab_kegiatan2`
+--
+
+LOCK TABLES `rab_kegiatan2` WRITE;
+/*!40000 ALTER TABLE `rab_kegiatan2` DISABLE KEYS */;
+INSERT INTO `rab_kegiatan2` VALUES (1,656947,'3356','BAB','10','005','AA',20000000.00,NULL,NULL),(2,121306,'3356','BAB','10','005','AA',20000000.00,NULL,NULL);
+/*!40000 ALTER TABLE `rab_kegiatan2` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rab_note_penelaah`
+--
+
+DROP TABLE IF EXISTS `rab_note_penelaah`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `rab_note_penelaah` (
+  `id_rab_note_penelaah` int NOT NULL AUTO_INCREMENT,
+  `id_rab` int DEFAULT NULL,
+  `note` text CHARACTER SET utf8 COLLATE utf8_general_ci,
+  PRIMARY KEY (`id_rab_note_penelaah`) USING BTREE,
+  KEY `rab_note_penelaah_id_rab_note_penelaah_index` (`id_rab_note_penelaah`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rab_note_penelaah`
+--
+
+LOCK TABLES `rab_note_penelaah` WRITE;
+/*!40000 ALTER TABLE `rab_note_penelaah` DISABLE KEYS */;
+INSERT INTO `rab_note_penelaah` VALUES (1,14,'Harga bahan tidak sesuai DIPA. Harap disesuaikan.'),(2,14,'Pastikan Volum nya jangan sampai kurang'),(3,15,'Harap tambahkan dokumen pendukung.'),(4,15,'Seusaikan dengan DIPA 2021'),(5,15,'Seusaikan dengan DIPA 2021'),(6,16,'Ada parameter yg kurang.'),(7,30,'loerm ipsum'),(8,34,'hkhjdkjfg sdfg sdfg'),(9,35,'lorem ipsum');
+/*!40000 ALTER TABLE `rab_note_penelaah` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8  */ ;
+/*!50003 SET character_set_results = utf8  */ ;
+/*!50003 SET collation_connection  = utf8_general_ci*/ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_reviewer_note_insert` AFTER INSERT ON `rab_note_penelaah` FOR EACH ROW BEGIN
+
+    IF NEW.note IS NOT NULL THEN
+
+        -- UPDATE rab
+
+        -- SET rab.id_statuses = 2
+
+        -- SET rab.id_statuses = (
+
+        --    select rab.id_rab
+
+        --    from rab_note_penelaah
+
+        --    where rab_note_penelaah.id_rab = rab.id_rab
+
+        --    );
+
+        -- WHERE rab_note_penelaah.id_rab = rab.id_rab ;
+
+        update rab inner join rab_note_penelaah on rab.id_rab = rab_note_penelaah.id_rab set rab.id_statuses =2
+
+        where rab_note_penelaah.id_rab = rab.id_rab;
+
+            -- if(rab_note_penelaah.note is not null,
+
+            -- rab_note_penelaah.id_rab, rab.id_rab) where rab_note_penelaah.id_rab =
+
+    END IF;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8  */ ;
+/*!50003 SET character_set_results = utf8  */ ;
+/*!50003 SET collation_connection  = utf8_general_ci*/ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_penelaah_note_insert` AFTER INSERT ON `rab_note_penelaah` FOR EACH ROW BEGIN
+
+    IF NEW.note IS NOT NULL THEN
+
+        -- UPDATE rab
+
+        -- SET rab.id_statuses = 2
+
+        -- SET rab.id_statuses = (
+
+        --    select rab.id_rab
+
+        --    from rab_note_penelaah
+
+        --    where rab_note_penelaah.id_rab = rab.id_rab
+
+        --    );
+
+        -- WHERE rab_note_penelaah.id_rab = rab.id_rab ;
+
+        update rab inner join rab_note_penelaah on rab.id_rab = rab_note_penelaah.id_rab set rab.id_statuses =2
+
+        where rab_note_penelaah.id_rab = rab.id_rab;
+
+            -- if(rab_note_penelaah.note is not null,
+
+            -- rab_note_penelaah.id_rab, rab.id_rab) where rab_note_penelaah.id_rab =
+
+    END IF;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `rab_note_penyetuju`
+--
+
+DROP TABLE IF EXISTS `rab_note_penyetuju`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `rab_note_penyetuju` (
+  `id_rab_note_penyetuju` int NOT NULL AUTO_INCREMENT,
+  `id_rab` int DEFAULT NULL,
+  `note` text CHARACTER SET utf8  COLLATE utf8_general_ci,
+  PRIMARY KEY (`id_rab_note_penyetuju`) USING BTREE,
+  KEY `rab_note_penyetuju_id_rab_note_penyetuju_index` (`id_rab_note_penyetuju`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rab_note_penyetuju`
+--
+
+LOCK TABLES `rab_note_penyetuju` WRITE;
+/*!40000 ALTER TABLE `rab_note_penyetuju` DISABLE KEYS */;
+INSERT INTO `rab_note_penyetuju` VALUES (1,14,'Harga bahan kurang sesuai. Sajikan data harga vendor-vendor terkait sebagai pembanding.'),(2,17,'Tambahkan dokumen pendukungnya.'),(3,17,'Tambahkan dokumen pendukungnya.'),(4,16,'Dokumen pendukung perlu ditambah lagi.');
+/*!40000 ALTER TABLE `rab_note_penyetuju` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8  */ ;
+/*!50003 SET character_set_results = utf8  */ ;
+/*!50003 SET collation_connection  = utf8_general_ci*/ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_penyetuju_note_insert` AFTER INSERT ON `rab_note_penyetuju` FOR EACH ROW BEGIN
+
+    IF NEW.note IS NOT NULL THEN
+
+        -- UPDATE rab
+
+        -- SET rab.id_statuses = 2
+
+        -- SET rab.id_statuses = (
+
+        --    select rab.id_rab
+
+        --    from rab_note_penelaah
+
+        --    where rab_note_penelaah.id_rab = rab.id_rab
+
+        --    );
+
+        -- WHERE rab_note_penelaah.id_rab = rab.id_rab ;
+
+        update rab inner join rab_note_penyetuju on rab.id_rab = rab_note_penyetuju.id_rab set rab.id_statuses =2
+
+        where rab_note_penyetuju.id_rab = rab.id_rab;
+
+            -- if(rab_note_penelaah.note is not null,
+
+            -- rab_note_penelaah.id_rab, rab.id_rab) where rab_note_penelaah.id_rab =
+
+    END IF;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `rab_rincian`
+--
+
+DROP TABLE IF EXISTS `rab_rincian`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `rab_rincian` (
+  `rab_rincian_id` int NOT NULL AUTO_INCREMENT,
+  `kode_akun` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `uraian` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `volum` int DEFAULT NULL,
+  `satuan` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `sbm` decimal(15,2) DEFAULT NULL,
+  `id_rab` int DEFAULT '11',
+  `subtotal` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`rab_rincian_id`) USING BTREE,
+  KEY `rab_rincian_rab_id_rab_fk` (`id_rab`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rab_rincian`
+--
+
+LOCK TABLES `rab_rincian` WRITE;
+/*!40000 ALTER TABLE `rab_rincian` DISABLE KEYS */;
+INSERT INTO `rab_rincian` VALUES (8,'521211','Lampu Kerja',5,'unit',125000.00,14,625000.00),(9,'521211','ATK',1,'pkt',1550000.00,14,1550000.00),(10,'521211','Kopi',1,'pkt',200000.00,14,200000.00),(11,'522151','Pasang CCTV',1,'pkt',1000000.00,14,1000000.00),(12,'521213','Service Genset',1,'pkt',2100000.00,14,2100000.00),(13,'521213','Service Mobile',1,'pkt',3500000.00,14,3500000.00),(14,'522151','ATK',1,'pkt',2000000.00,15,2000000.00),(15,'521211','Belanja',10,'Orang',500.00,17,5000.00),(16,'521213','ATK',38,'Buah',1200.00,17,45600.00),(23,'521211','asdfasdf',1,'pkt',900000.00,30,900000.00),(24,'521213','asdfasdfasdf asdfasdf',2,'pkt',800000.00,30,1600000.00),(25,'521213','Service Komputer',5,'pkt',200000.00,14,1000000.00),(26,'521211','Service Komputer',10,'unit',1080000.00,32,10800000.00);
+/*!40000 ALTER TABLE `rab_rincian` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8  */ ;
+/*!50003 SET character_set_results = utf8  */ ;
+/*!50003 SET collation_connection  = utf8_general_ci*/ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `rincianSumInsert` BEFORE INSERT ON `rab_rincian` FOR EACH ROW BEGIN
+
+    SET NEW.subtotal = NEW.volum * NEW.sbm;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8  */ ;
+/*!50003 SET character_set_results = utf8  */ ;
+/*!50003 SET collation_connection  = utf8_general_ci*/ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `rincianSumUpdate` BEFORE UPDATE ON `rab_rincian` FOR EACH ROW BEGIN
+
+    SET NEW.subtotal = NEW.volum * NEW.sbm;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `request`
+--
+
+DROP TABLE IF EXISTS `request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `request` (
+  `request_id` int NOT NULL,
+  `process_id` int DEFAULT NULL,
+  `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `date_requested` date DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `username` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `current_state_id` int DEFAULT NULL,
+  PRIMARY KEY (`request_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request`
+--
+
+LOCK TABLES `request` WRITE;
+/*!40000 ALTER TABLE `request` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_action`
+--
+
+DROP TABLE IF EXISTS `request_action`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `request_action` (
+  `request_action_id` int NOT NULL,
+  `request_id` int DEFAULT NULL,
+  `action_id` int DEFAULT NULL,
+  `transition_id` int DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `is_complete` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`request_action_id`) USING BTREE,
+  KEY `IXFK_request_action_action` (`action_id`) USING BTREE,
+  KEY `IXFK_request_action_request` (`request_id`) USING BTREE,
+  KEY `IXFK_request_action_transition` (`transition_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_action`
+--
+
+LOCK TABLES `request_action` WRITE;
+/*!40000 ALTER TABLE `request_action` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_action` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_data`
+--
+
+DROP TABLE IF EXISTS `request_data`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `request_data` (
+  `request_data_id` int NOT NULL,
+  `request_id` int DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `value` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`request_data_id`) USING BTREE,
+  KEY `IXFK_request_data_request` (`request_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_data`
+--
+
+LOCK TABLES `request_data` WRITE;
+/*!40000 ALTER TABLE `request_data` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_data` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_file`
+--
+
+DROP TABLE IF EXISTS `request_file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `request_file` (
+  `request_file_id` int NOT NULL,
+  `request_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `date_uploaded` date DEFAULT NULL,
+  `file_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `file_content` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `mime_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`request_file_id`) USING BTREE,
+  KEY `IXFK_request_file_request` (`request_id`) USING BTREE,
+  KEY `IXFK_request_file_users` (`user_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_file`
+--
+
+LOCK TABLES `request_file` WRITE;
+/*!40000 ALTER TABLE `request_file` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_file` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_note`
+--
+
+DROP TABLE IF EXISTS `request_note`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `request_note` (
+  `request_note_id` int NOT NULL,
+  `request_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `note` text CHARACTER SET utf8 COLLATE utf8_bin,
+  PRIMARY KEY (`request_note_id`) USING BTREE,
+  KEY `IXFK_request_note_request` (`request_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_note`
+--
+
+LOCK TABLES `request_note` WRITE;
+/*!40000 ALTER TABLE `request_note` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_note` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_rab`
+--
+
+DROP TABLE IF EXISTS `request_rab`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `request_rab` (
+  `request_rab_id` int NOT NULL AUTO_INCREMENT,
+  `id_rab` int DEFAULT NULL,
+  `request_id` int DEFAULT NULL,
+  PRIMARY KEY (`request_rab_id`) USING BTREE,
+  KEY `IXFK_request_rab_rab_kegiatan` (`id_rab`) USING BTREE,
+  KEY `IXFK_request_rab_request` (`request_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_rab`
+--
+
+LOCK TABLES `request_rab` WRITE;
+/*!40000 ALTER TABLE `request_rab` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_rab` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_stakeholder`
+--
+
+DROP TABLE IF EXISTS `request_stakeholder`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `request_stakeholder` (
+  `request_id` int NOT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`request_id`) USING BTREE,
+  KEY `IXFK_request_stakeholder_request` (`request_id`) USING BTREE,
+  KEY `IXFK_request_stakeholder_users` (`user_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_stakeholder`
+--
+
+LOCK TABLES `request_stakeholder` WRITE;
+/*!40000 ALTER TABLE `request_stakeholder` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_stakeholder` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reviewer_note`
+--
+
+DROP TABLE IF EXISTS `reviewer_note`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `reviewer_note` (
+  `reviewer_note_id` int NOT NULL,
+  `reviewer_note` text CHARACTER SET utf8 COLLATE utf8_bin,
+  PRIMARY KEY (`reviewer_note_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reviewer_note`
+--
+
+LOCK TABLES `reviewer_note` WRITE;
+/*!40000 ALTER TABLE `reviewer_note` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reviewer_note` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ro`
+--
+
+DROP TABLE IF EXISTS `ro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `ro` (
+  `kode_ro` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `id` int NOT NULL,
+  `kode_kro` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `nama_ro` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `IXFK_ro_kro` (`kode_kro`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='table RO (Real Output)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ro`
+--
+
+LOCK TABLES `ro` WRITE;
+/*!40000 ALTER TABLE `ro` DISABLE KEYS */;
+INSERT INTO `ro` VALUES ('10',0,'BAB','Pengelolaan Perencanaan dan Persiapan Logistik');
+/*!40000 ALTER TABLE `ro` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `satker`
+--
+
+DROP TABLE IF EXISTS `satker`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `satker` (
+  `satker_id` int NOT NULL,
+  `unit_org_id` int DEFAULT NULL,
+  `nama_satker` varchar(70) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'satker setara dgn kab/kota',
+  PRIMARY KEY (`satker_id`) USING BTREE,
+  KEY `IXFK_satker_unit_org` (`unit_org_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='table satker. satker setara dgn kab/kota';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `satker`
+--
+
+LOCK TABLES `satker` WRITE;
+/*!40000 ALTER TABLE `satker` DISABLE KEYS */;
+INSERT INTO `satker` VALUES (656947,654382,'KPU KOTA JAKARTA SELATAN'),(656951,654382,'KPU KOTA JAKARTA TIMUR'),(656968,654382,'KPU KOTA JAKARTA PUSAT'),(656972,654382,'KPU KOTA JAKARTA BARAT'),(656989,654382,'KPU KOTA JAKARTA UTARA'),(656993,654382,'KPU KEPULAUAN SERIBU'),(657008,654399,'KPU KABUPATEN BOGOR'),(657012,654399,'KPU KABUPATEN SUKABUMI'),(657029,654399,'KPU KABUPATEN CIANJUR'),(657033,654399,'KPU KABUPATEN BEKASI'),(657040,654399,'KPU KABUPATEN KARAWANG'),(657054,654399,'KPU KABUPATEN PURWAKARTA'),(657061,654399,'KPU KABUPATEN SUBANG'),(657075,654399,'KPU KABUPATEN BANDUNG'),(657082,654399,'KPU KABUPATEN SUMEDANG'),(657096,654399,'KPU KABUPATEN GARUT'),(657101,654399,'KPU KABUPATEN TASIKMALAYA'),(657118,654399,'KPU KABUPATEN CIAMIS'),(657122,654399,'KPU KABUPATEN CIREBON'),(657139,654399,'KPU KABUPATEN KUNINGAN'),(657143,654399,'KPU KABUPATEN INDRAMAYU'),(657150,654399,'KPU KABUPATEN MAJALENGKA'),(657164,654399,'KPU KOTA BANDUNG'),(657171,654399,'KPU KOTA BOGOR'),(657185,654399,'KPU KOTA SUKABUMI'),(657192,654399,'KPU KOTA CIREBON'),(657207,654399,'KPU KOTA BEKASI'),(657211,654399,'KPU KOTA DEPOK'),(657228,654399,'KPU KOTA TASIKMALAYA'),(657232,654399,'KPU KOTA CIMAHI'),(657249,654399,'KPU KOTA BANJAR'),(670379,654399,'KPU KAB. BANDUNG BARAT'),(22207,654399,'KPU KABUPATEN PANGANDARAN'),(657253,654404,'KPU KABUPATEN SEMARANG'),(657260,654404,'KPU KABUPATEN KENDAL'),(657274,654404,'KPU KABUPATEN DEMAK'),(657281,654404,'KPU KABUPATEN GROBOGAN'),(657295,654404,'KPU KABUPATEN PEKALONGAN'),(657300,654404,'KPU KABUPATEN BATANG'),(657317,654404,'KPU KABUPATEN TEGAL'),(657321,654404,'KPU KABUPATEN BREBES'),(657338,654404,'KPU KABUPATEN PATI'),(657342,654404,'KPU KABUPATEN KUDUS'),(657359,654404,'KPU KABUPATEN PEMALANG'),(657363,654404,'KPU KABUPATEN JEPARA'),(657370,654404,'KPU KABUPATEN REMBANG'),(657384,654404,'KPU KABUPATEN BLORA'),(657391,654404,'KPU KABUPATEN BANYUMAS'),(657406,654404,'KPU KABUPATEN CILACAP'),(657410,654404,'KPU KABUPATEN PURBALINGGA'),(657427,654404,'KPU KABUPATEN BANJARNEGARA'),(657431,654404,'KPU KABUPATEN MAGELANG'),(657448,654404,'KPU KABUPATEN TEMANGGUNG'),(657452,654404,'KPU KABUPATEN WONOSOBO'),(657469,654404,'KPU KABUPATEN PURWOREJO'),(657473,654404,'KPU KABUPATEN KEBUMEN'),(657480,654404,'KPU KABUPATEN KLATEN'),(657494,654404,'KPU KABUPATEN BOYOLALI'),(657502,654404,'KPU KABUPATEN SRAGEN'),(657516,654404,'KPU KABUPATEN SUKOHARJO'),(657520,654404,'KPU KABUPATEN KARANGANYAR'),(657537,654404,'KPU KABUPATEN WONOGIRI'),(657541,654404,'KPU KOTA SEMARANG'),(657558,654404,'KPU KOTA SALATIGA'),(657562,654404,'KPU KOTA PEKALONGAN'),(657579,654404,'KPU KOTA TEGAL'),(657583,654404,'KPU KOTA MAGELANG'),(657590,654404,'KPU KOTA SURAKARTA'),(657605,654411,'KPU KABUPATEN KULONPROGO'),(657612,654411,'KPU KABUPATEN BANTUL'),(657626,654411,'KPU KABUPATEN GUNUNGKIDUL'),(657630,654411,'KPU KABUPATEN SLEMAN'),(657647,654411,'KPU KOTA YOGYAKARTA'),(657651,654425,'KPU KABUPATEN BANGKALAN'),(657668,654425,'KPU KABUPATEN BANYUWANGI'),(657672,654425,'KPU KABUPATEN BLITAR'),(657689,654425,'KPU KABUPATEN BOJONEGORO'),(657693,654425,'KPU KABUPATEN BONDOWOSO'),(657701,654425,'KPU KABUPATEN GRESIK'),(657715,654425,'KPU KABUPATEN JEMBER'),(657722,654425,'KPU KABUPATEN JOMBANG'),(657736,654425,'KPU KABUPATEN KEDIRI'),(657740,654425,'KPU KABUPATEN LAMONGAN'),(657757,654425,'KPU KABUPATEN LUMAJANG'),(657761,654425,'KPU KABUPATEN MADIUN'),(657778,654425,'KPU KABUPATEN MAGETAN'),(657782,654425,'KPU KABUPATEN MALANG'),(657799,654425,'KPU KABUPATEN MOJOKERTO'),(657804,654425,'KPU KABUPATEN NGANJUK'),(657811,654425,'KPU KABUPATEN NGAWI'),(657825,654425,'KPU KABUPATEN PACITAN'),(657832,654425,'KPU KABUPATEN PAMEKASAN'),(657846,654425,'KPU KABUPATEN PASURUAN'),(657850,654425,'KPU KABUPATEN PONOROGO'),(657867,654425,'KPU KABUPATEN PROBOLINGGO'),(657871,654425,'KPU KABUPATEN SAMPANG'),(657888,654425,'KPU KABUPATEN SIDOARJO'),(657892,654425,'KPU KABUPATEN SITUBONDO'),(657900,654425,'KPU KABUPATEN SUMENEP'),(657914,654425,'KPU KABUPATEN TRENGGALEK'),(657921,654425,'KPU KABUPATEN TUBAN'),(657935,654425,'KPU KABUPATEN TULUNGAGUNG'),(657942,654425,'KPU KOTA SURABAYA'),(657956,654425,'KPU KOTA BATU'),(657960,654425,'KPU KOTA BLITAR'),(657977,654425,'KPU KOTA KEDIRI'),(657981,654425,'KPU KOTA MADIUN'),(657998,654425,'KPU KOTA MALANG'),(658000,654425,'KPU KOTA MOJOKERTO'),(658017,654425,'KPU KOTA PASURUAN'),(658021,654425,'KPU KOTA PROBOLINGGO'),(655629,654289,'KPU KABUPATEN ACEH SELATAN'),(655633,654289,'KPU KABUPATEN ACEH TENGGARA'),(655640,654289,'KPU KABUPATEN ACEH TIMUR'),(655654,654289,'KPU KABUPATEN ACEH TENGAH'),(655661,654289,'KPU KABUPATEN BENER MERIAH'),(655675,654289,'KPU KABUPATEN ACEH BARAT'),(655682,654289,'KPU KABUPATEN ACEH BESAR'),(655696,654289,'KPU KABUPATEN ACEH UTARA'),(655701,654289,'KPU KABUPATEN ACEH BARAT DAYA'),(655718,654289,'KPU KABUPATEN PIDIE'),(655722,654289,'KPU KABUPATEN SIMEULEU'),(655739,654289,'KPU KABUPATEN ACEH SINGKIL'),(655743,654289,'KPU KABUPATEN BIREUN'),(655750,654289,'KPU KABUPATEN ACEH GAYO LUES'),(655764,654289,'KPU KABUPATEN ACEH TAMIANG'),(655771,654289,'KPU KABUPATEN ACEH JAYA'),(655785,654289,'KPU KABUPATEN NAGAN RAYA'),(655792,654289,'KPU KOTA BANDA ACEH'),(655807,654289,'KPU KOTA SABANG'),(655811,654289,'KPU KOTA LHOKSUMAWE'),(655828,654289,'KPU KOTA LANGSA'),(670341,654289,'KPU KAB. PIDIE JAYA'),(670358,654289,'KPU KOTA SUBULUSSALAM'),(655832,654293,'KPU KABUPATEN TAPANULI TENGAH'),(655849,654293,'KPU KABUPATEN TAPANULI UTARA'),(655853,654293,'KPU KABUPATEN TAPANULI SELATAN'),(655860,654293,'KPU KABUPATEN NIAS'),(655874,654293,'KPU KABUPATEN LANGKAT'),(655881,654293,'KPU KABUPATEN TANAH KARO'),(655895,654293,'KPU KABUPATEN DELI SERDANG'),(655900,654293,'KPU KABUPATEN SERDANG BEDAGAI'),(655917,654293,'KPU KABUPATEN SIMALUNGUN'),(655921,654293,'KPU KABUPATEN ASAHAN'),(655938,654293,'KPU KABUPATEN LABUHAN BATU'),(655942,654293,'KPU KABUPATEN DAIRI'),(655959,654293,'KPU KABUPATEN TOBA SAMOSIR'),(655963,654293,'KPU KABUPATEN SAMOSIR'),(655970,654293,'KPU KABUPATEN MANDAILING NATAL'),(655984,654293,'KPU KABUPATEN NIAS SELATAN'),(655991,654293,'KPU KABUPATEN PAKPAK BARAT'),(656003,654293,'KPU KABUPATEN HUMBANG HASUNDUTAN'),(656010,654293,'KPU KOTA MEDAN'),(656024,654293,'KPU KOTA PEMATANG SIANTAR'),(656031,654293,'KPU KOTA SIBOLGA'),(656045,654293,'KPU KOTA TANJUNG BALAI'),(656052,654293,'KPU KOTA BINJAI'),(656066,654293,'KPU KOTA TEBING TINGGI'),(656070,654293,'KPU KOTA PADANG SIDEMPUAN'),(670383,654293,'KPU KAB. BATUBARA'),(670760,654293,'KPU KAB. PADANG LAWAS UTARA'),(670777,654293,'KPU KAB. PADANG LAWAS'),(670913,654293,'KPU KAB. LABUHAN BATU SELATAN'),(670920,654293,'KPU KAB. LABUHAN BATU UTARA'),(680654,654293,'KPU KABUPATEN NIAS UTARA'),(680661,654293,'KPU KABUPATEN NIAS BARAT'),(680675,654293,'KPU KOTA GUNUNG SITOLI'),(656087,654301,'KPU KABUPATEN PESISIR SELATAN'),(656091,654301,'KPU KABUPATEN SOLOK'),(656109,654301,'KPU KABUPATEN SOLOK SELATAN'),(656113,654301,'KPU KABUPATEN SIJUNJUNG'),(656120,654301,'KPU KABUPATEN DHARMAS RAYA'),(656134,654301,'KPU KABUPATEN TANAH DATAR'),(656141,654301,'KPU KABUPATEN PADANG PARIAMAN'),(656155,654301,'KPU KABUPATEN AGAM'),(656162,654301,'KPU KABUPATEN LIMA PULUH KOTA'),(656176,654301,'KPU KABUPATEN PASAMAN'),(656180,654301,'KPU KABUPATEN PASAMAN BARAT'),(656197,654301,'KPU KABUPATEN KEPULAUAN MENTAWAI'),(656202,654301,'KPU KOTA PADANG'),(656219,654301,'KPU KOTA SOLOK'),(656223,654301,'KPU KOTA SAWAHLUNTO'),(656230,654301,'KPU KOTA PADANG PANJANG'),(656244,654301,'KPU KOTA BUKITTINGGI'),(656251,654301,'KPU KOTA PAYAKUMBUH'),(656265,654301,'KPU KOTA PARIAMAN'),(656272,654315,'KPU KABUPATEN KUANTAN SINGINGI'),(656286,654315,'KPU KABUPATEN INDRAGIRI HULU'),(656290,654315,'KPU KABUPATEN INDRAGIRI HILIR'),(656308,654315,'KPU KABUPATEN PELALAWAN'),(656312,654315,'KPU KABUPATEN SIAK'),(656329,654315,'KPU KABUPATEN KAMPAR'),(656333,654315,'KPU KABUPATEN ROKAN HULU'),(656340,654315,'KPU KABUPATEN BENGKALIS'),(656354,654315,'KPU KABUPATEN ROKAN HILIR'),(656361,654315,'KPU KOTA PEKANBARU'),(656375,654315,'KPU KOTA DUMAI'),(670891,654315,'KPU KAB. KEPULAUAN MERANTI'),(656382,654322,'KPU KABUPATEN KERINCI'),(656396,654322,'KPU KABUPATEN MERANGIN'),(656401,654322,'KPU KABUPATEN SAROLANGUN'),(656418,654322,'KPU KABUPATEN BATANGHARI'),(656422,654322,'KPU KABUPATEN MUARO JAMBI'),(656439,654322,'KPU KABUPATEN TANJUNG JABUNG TIMUR'),(656443,654322,'KPU KABUPATEN TANJUNG JABUNG BARAT'),(656450,654322,'KPU KABUPATEN BUNGO'),(656464,654322,'KPU KABUPATEN TEBO'),(656471,654322,'KPU KOTA JAMBI'),(670934,654322,'KPU KOTA SUNGAI PENUH'),(656485,654336,'KPU KABUPATEN BANYUASIN'),(656492,654336,'KPU KABUPATEN MUSI BANYU ASIN'),(656507,654336,'KPU KABUPATEN MUSI RAWAS'),(656511,654336,'KPU KABUPATEN LAHAT'),(656528,654336,'KPU KABUPATEN MUARA ENIM'),(656532,654336,'KPU KABUPATEN OGAN KOMERING ILIR'),(656549,654336,'KPU KABUPATEN OGAN ILIR'),(656553,654336,'KPU KABUPATEN OGAN KOMERING ULU'),(656560,654336,'KPU KABUPATEN OGAN KOMERING ULU TIMUR'),(656574,654336,'KPU KABUPATEN OGAN KOMERING ULU SELATAN'),(656581,654336,'KPU KOTA PALEMBANG'),(656595,654336,'KPU KOTA PAGAR ALAM'),(656600,654336,'KPU KOTA LUBUK LINGGAU'),(656617,654336,'KPU KOTA PRABUMULIH'),(670252,654336,'KPU KAB EMPAT LAWANG'),(111804,654336,'KPU KABUPATEN PENUKAL ABAB LEMATANG ILIR'),(111904,654336,'KPU KABUPATEN MUSI RAWAS UTARA'),(656710,654357,'KPU KABUPATEN LAMPUNG TENGAH'),(656727,654357,'KPU KABUPATEN LAMPUNG UTARA'),(656731,654357,'KPU KABUPATEN LAMPUNG BARAT'),(656748,654357,'KPU KABUPATEN TULANG BAWANG'),(656752,654357,'KPU KABUPATEN TANGGAMUS'),(656769,654357,'KPU KABUPATEN LAMPUNG TIMUR'),(656773,654357,'KPU KABUPATEN WAY KANAN'),(656780,654357,'KPU KABUPATEN LAMPUNG SELATAN'),(656794,654357,'KPU KOTA METRO'),(656802,654357,'KPU KOTA BANDAR LAMPUNG'),(670721,654357,'KPU KAB. PESAWARAN'),(680696,654357,'KPU KABUPATEN TULANGBAWANG BARAT'),(680701,654357,'KPU KABUPATEN PRING SEWU'),(680718,654357,'KPU KABUPATEN MESUJI'),(121306,654357,'KPU KABUPATEN PESISIR BARAT'),(658436,654471,'KPU KABUPATEN SAMBAS'),(658440,654471,'KPU KABUPATEN BENGKAYANG'),(658457,654471,'KPU KABUPATEN LANDAK'),(658461,654471,'KPU KABUPATEN MEMPAWAH'),(658478,654471,'KPU KABUPATEN SANGGAU'),(658482,654471,'KPU KABUPATEN SEKADAU'),(658499,654471,'KPU KABUPATEN KETAPANG'),(658504,654471,'KPU KABUPATEN SINTANG'),(658511,654471,'KPU KABUPATEN MELAWI'),(658525,654471,'KPU KABUPATEN KAPUAS HULU'),(658532,654471,'KPU KOTA PONTIANAK'),(658546,654471,'KPU KOTA SINGKAWANG'),(670337,654471,'KPU KAB. KAYONG UTARA'),(670742,654471,'KPU KAB. KUBU RAYA'),(658550,654488,'KPU KABUPATEN KOTAWARINGIN BARAT'),(658567,654488,'KPU KABUPATEN KOTAWARINGIN TIMUR'),(658571,654488,'KPU KABUPATEN KAPUAS'),(658588,654488,'KPU KABUPATEN KATINGAN'),(658592,654488,'KPU KABUPATEN BARITO SELATAN'),(658600,654488,'KPU KABUPATEN BARITO UTARA'),(658614,654488,'KPU KABUPATEN SERUYAN'),(658621,654488,'KPU KABUPATEN SUKAMARA'),(658635,654488,'KPU KABUPATEN LAMANDAU'),(658642,654488,'KPU KABUPATEN GUNUNG MAS'),(658656,654488,'KPU KABUPATEN PULANG PISAU'),(658660,654488,'KPU KABUPATEN BARITO TIMUR'),(658677,654488,'KPU KABUPATEN MURUNG RAYA'),(658681,654488,'KPU KOTA PALANGKARAYA'),(658698,654492,'KPU KABUPATEN BALANGAN'),(658703,654492,'KPU KABUPATEN TANAH BUMBU'),(658710,654492,'KPU KABUPATEN TABALONG'),(658724,654492,'KPU KABUPATEN HULU SUNGAI SELATAN'),(658731,654492,'KPU KABUPATEN HULU SUNGAI TENGAH'),(658745,654492,'KPU KABUPATEN HULU SUNGAI UTARA'),(658752,654492,'KPU KABUPATEN TAPIN'),(658766,654492,'KPU KABUPATEN BARITO KUALA'),(658770,654492,'KPU KABUPATEN BANJAR'),(658787,654492,'KPU KABUPATEN KOTABARU'),(658791,654492,'KPU KABUPATEN TANAHLAUT'),(658809,654492,'KPU KOTA BANJAR BARU'),(658813,654492,'KPU KOTA BANJARMASIN'),(658820,654500,'KPU KABUPATEN PENAJAM PASER UTARA'),(658834,654500,'KPU KABUPATEN KUTAI TIMUR'),(658841,654500,'KPU KABUPATEN KUTAI BARAT'),(658880,654500,'KPU KABUPATEN BERAU'),(658897,654500,'KPU KABUPATEN KUTAI KERTANEGARA'),(658902,654500,'KPU KABUPATEN PASIR'),(658919,654500,'KPU KOTA BONTANG'),(658930,654500,'KPU KOTA SAMARINDA'),(658944,654500,'KPU KOTA BALIKPAPAN'),(161303,654500,'KPU KABUPATEN MAHAKAM ULU'),(658951,654514,'KPU KABUPATEN BOLAANG MONGONDOW'),(658965,654514,'KPU KABUPATEN MINAHASA'),(658972,654514,'KPU KABUPATEN KEPULAUAN SANGIHE'),(658986,654514,'KPU KABUPATEN KEPULAUAN TALAUD'),(658990,654514,'KPU KABUPATEN MINAHASA SELATAN'),(659005,654514,'KPU KABUPATEN MINAHASA UTARA'),(659012,654514,'KPU KOTA MANADO'),(659026,654514,'KPU KOTA BITUNG'),(659030,654514,'KPU KOTA TOMOHON'),(670294,654514,'KPU KOTA KOTAMOBAGO'),(670302,654514,'KPU KAB. MINAHASA TENGGARA'),(670316,654514,'KPU KAB. BOLAANG MONGONDOW UTARA'),(670320,654514,'KPU KAB. KEP. SIAU TAGULANDANG BIARO'),(670955,654514,'KPU KAB. BOLAANG MONGONDOW SELATAN'),(670962,654514,'KPU KAB. BOLAANG MONGONDOW TIMUR'),(659047,654521,'KPU KABUPATEN BANGGAI KEPULAUAN'),(659051,654521,'KPU KABUPATEN BANGGAI'),(659068,654521,'KPU KABUPATEN POSO'),(659072,654521,'KPU KABUPATEN MOROWALI'),(659089,654521,'KPU KABUPATEN DONGGALA'),(659093,654521,'KPU KABUPATEN TOLI-TOLI'),(659101,654521,'KPU KABUPATEN BUOL'),(659115,654521,'KPU KABUPATEN PARIGI MOUTONG'),(659122,654521,'KPU KABUPATEN TOJO UNA-UNA'),(659136,654521,'KPU KOTA PALU'),(670976,654521,'KPU KAB. SIGI'),(181305,654521,'KPU KABUPATEN BANGGAI LAUT'),(181403,654521,'KPU KABUPATEN MOROWALI UTARA'),(659140,654535,'KPU KABUPATEN SELAYAR'),(659157,654535,'KPU KABUPATEN BULUKUMBA'),(659161,654535,'KPU KABUPATEN BANTAENG'),(659178,654535,'KPU KABUPATEN JENEPONTO'),(659182,654535,'KPU KABUPATEN TAKALAR'),(659199,654535,'KPU KABUPATEN GOWA'),(659204,654535,'KPU KABUPATEN SINJAI'),(659211,654535,'KPU KABUPATEN BONE'),(659225,654535,'KPU KABUPATEN MAROS'),(659232,654535,'KPU KABUPATEN PANGKAJENE KEPULAUAN'),(659246,654535,'KPU KABUPATEN BARRU'),(659250,654535,'KPU KABUPATEN SOPPENG'),(659267,654535,'KPU KABUPATEN WAJO'),(659271,654535,'KPU KABUPATEN SIDENRENG RAPPANG'),(659288,654535,'KPU KABUPATEN PINRANG'),(659292,654535,'KPU KABUPATEN ENREKANG'),(659300,654535,'KPU KABUPATEN LUWU'),(659314,654535,'KPU KABUPATEN TANATORAJA'),(659356,654535,'KPU KABUPATEN LUWU UTARA'),(659377,654535,'KPU KABUPATEN LUWU TIMUR'),(659398,654535,'KPU KOTA MAKASSAR'),(659403,654535,'KPU KOTA PARE-PARE'),(659410,654535,'KPU KOTA PALOPO'),(671016,654535,'KPU KAB. TORAJA UTARA'),(201205,654542,'KPU KABUPATEN KOLAKA TIMUR'),(659424,654542,'KPU KABUPATEN KONAWE'),(659431,654542,'KPU KABUPATEN BUTON'),(659445,654542,'KPU KABUPATEN MUNA'),(659452,654542,'KPU KABUPATEN KOLAKA'),(659466,654542,'KPU KABUPATEN KONAWE SELATAN'),(659470,654542,'KPU KABUPATEN BOMBANA'),(659487,654542,'KPU KABUPATEN WAKATOBI'),(659491,654542,'KPU KABUPATEN KOLAKA UTARA'),(659509,654542,'KPU KOTA KENDARI'),(659513,654542,'KPU KOTA BAU-BAU'),(670390,654542,'KPU KAB. KONAWE UTARA'),(670405,654542,'KPU KAB. BUTON UTARA'),(201304,654542,'KPU KABUPATEN KONAWE KEPULAUAN'),(419168,654542,'KPU KABUPATEN BUTON TENGAH'),(419169,654542,'KPU KABUPATEN BUTON SELATAN'),(419170,654542,'KPU KABUPATEN MUNA BARAT'),(659576,654560,'KPU KABUPATEN MALUKU TENGAH'),(659580,654560,'KPU KABUPATEN SERAM BAGIAN BARAT'),(659597,654560,'KPU KABUPATEN SERAM BAGIAN TIMUR'),(659602,654560,'KPU KABUPATEN MALUKU TENGGARA'),(659619,654560,'KPU KABUPATEN KEPULAUAN ARU'),(659623,654560,'KPU KABUPATEN MALUKU TENGGARA BARAT'),(659630,654560,'KPU KABUPATEN BURU'),(659644,654560,'KPU KOTA AMBON'),(670700,654560,'KPU KOTA TUAL'),(670980,654560,'KPU KAB. BURU SELATAN'),(670997,654560,'KPU KAB. MALUKU BARAT DAYA'),(658091,654446,'KPU KABUPATEN BULELENG'),(658106,654446,'KPU KABUPATEN JEMBRANA'),(658110,654446,'KPU KABUPATEN KLUNGKUNG'),(658127,654446,'KPU KABUPATEN GIANYAR'),(658131,654446,'KPU KABUPATEN KARANGASEM'),(658148,654446,'KPU KABUPATEN BANGLI'),(658152,654446,'KPU KABUPATEN BADUNG'),(658169,654446,'KPU KABUPATEN TABANAN'),(658173,654446,'KPU KOTA DENPASAR'),(658180,654450,'KPU KABUPATEN LOMBOK BARAT'),(658194,654450,'KPU KABUPATEN LOMBOK TENGAH'),(658202,654450,'KPU KABUPATEN LOMBOK TIMUR'),(658216,654450,'KPU KABUPATEN BIMA'),(658220,654450,'KPU KABUPATEN SUMBAWA'),(658237,654450,'KPU KABUPATEN DOMPU'),(658241,654450,'KPU KABUPATEN SUMBAWA BARAT'),(658258,654450,'KPU KOTA MATARAM'),(658262,654450,'KPU KOTA BIMA'),(671002,654450,'KPU KAB. LOMBOK UTARA'),(658279,654467,'KPU KABUPATEN KUPANG'),(658283,654467,'KPU KABUPATEN BELU'),(658290,654467,'KPU KABUPATEN TIMOR TENGAH UTARA'),(658305,654467,'KPU KABUPATEN TIMOR TENGAH SELATAN'),(658312,654467,'KPU KABUPATEN ALOR'),(658326,654467,'KPU KABUPATEN SIKKA'),(658330,654467,'KPU KABUPATEN FLORES TIMUR'),(658347,654467,'KPU KABUPATEN ENDE'),(658351,654467,'KPU KABUPATEN NGADA'),(658368,654467,'KPU KABUPATEN MANGGARAI'),(658372,654467,'KPU KABUPATEN SUMBA TIMUR'),(658389,654467,'KPU KABUPATEN SUMBA BARAT'),(658393,654467,'KPU KABUPATEN LEMBATA'),(658401,654467,'KPU KABUPATEN ROTE NDAO'),(658415,654467,'KPU KABUPATEN MANGGARAI BARAT'),(658422,654467,'KPU KOTA KUPANG'),(670269,654467,'KPU KAB. NAGEKEO'),(670273,654467,'KPU KAB. SUMBA TENGAH'),(670280,654467,'KPU KAB. SUMBA BARAT DAYA'),(670756,654467,'KPU KAB. MANGGARAI TIMUR'),(680722,654467,'KPU KABUPATEN SABU RAIJUA'),(242205,654467,'KPU KABUPATEN MALAKA'),(659733,654581,'KPU KABUPATEN JAYAPURA'),(659740,654581,'KPU KABUPATEN BIAK NUMFOR'),(659754,654581,'KPU KABUPATEN YAPEN WAROPEN'),(659761,654581,'KPU KABUPATEN MERAUKE'),(659775,654581,'KPU KABUPATEN JAYAWIJAYA'),(659782,654581,'KPU KABUPATEN PANIAI'),(659796,654581,'KPU KABUPATEN NABIRE'),(659801,654581,'KPU KABUPATEN PUNCAK JAYA'),(659818,654581,'KPU KABUPATEN MIMIKA'),(659822,654581,'KPU KABUPATEN SARMI'),(659839,654581,'KPU KABUPATEN KEROM'),(659843,654581,'KPU KABUPATEN PEGUNUNGAN BINTANG'),(659850,654581,'KPU KABUPATEN YAHUKIMO'),(659864,654581,'KPU KABUPATEN TOLIKARA'),(659871,654581,'KPU KABUPATEN WAROPEN'),(659885,654581,'KPU KABUPATEN BOVEN DIGUL'),(659892,654581,'KPU KABUPATEN MAPPI'),(659907,654581,'KPU KABUPATEN ASMAT'),(659911,654581,'KPU KOTA JAYAPURA'),(659928,654581,'KPU KABUPATEN SUPIORI'),(670692,654581,'KPU KAB. MAMBERAMO'),(670810,654581,'KPU KAB. MAMBERAMO TENGAH'),(670824,654581,'KPU KAB. NDUGA'),(670831,654581,'KPU KAB. LANNY JAYA'),(670845,654581,'KPU KAB. DOGIYAI'),(670852,654581,'KPU KAB. PUNCAK'),(670909,654581,'KPU KAB. YALIMO'),(680743,654581,'KPU KABUPATEN INTAN JAYA'),(680750,654581,'KPU KABUPATEN DEIYAI'),(656621,654340,'KPU KABUPATEN BENGKULU SELATAN'),(656638,654340,'KPU KABUPATEN KAPAHIYANG'),(656642,654340,'KPU KABUPATEN REJANG LEBONG'),(656659,654340,'KPU KABUPATEN LEBONG'),(656663,654340,'KPU KABUPATEN BENGKULU UTARA'),(656670,654340,'KPU KABUPATEN K A U R'),(656684,654340,'KPU KABUPATEN SELUMA'),(656691,654340,'KPU KABUPATEN MUKO-MUKO'),(656706,654340,'KPU KOTA BENGKULU'),(670941,654340,'KPU KAB. BENGKULU TENGAH'),(659651,654577,'KPU KABUPATEN HALMAHERA BARAT'),(659665,654577,'KPU KABUPATEN HALMAHERA TENGAH'),(659672,654577,'KPU KABUPATEN HALMAHERA UTARA'),(659686,654577,'KPU KABUPATEN HALMAHERA SELATAN'),(659690,654577,'KPU KABUPATEN HALMAHERA TIMUR'),(659708,654577,'KPU KABUPATEN KEPULAUAN SULA'),(659712,654577,'KPU KOTA TERNATE'),(659729,654577,'KPU KOTA TIDORE KEPULAUAN'),(680739,654577,'KPU KABUPATEN KEPULAUAN MOROTAI'),(280903,654577,'KPU KABUPATEN PULAU TALIABU'),(658038,654432,'KPU KABUPATEN TANGERANG'),(658042,654432,'KPU KABUPATEN SERANG'),(417882,654432,'KPU KABUPATEN PANDEGLANG'),(658063,654432,'KPU KABUPATEN LEBAK'),(658070,654432,'KPU KOTA TANGERANG'),(658084,654432,'KPU KOTA CILEGON'),(670714,654432,'KPU KOTA SERANG'),(680682,654432,'KPU KOTA TANGERANG SELATAN'),(656816,654361,'KPU KABUPATEN BELITUNG'),(656820,654361,'KPU KABUPATEN BELITUNG TIMUR'),(656837,654361,'KPU KABUPATEN BANGKA'),(656841,654361,'KPU KABUPATEN BANGKA BARAT'),(656858,654361,'KPU KABUPATEN BANGKA TENGAH'),(656862,654361,'KPU KABUPATEN BANGKA SELATAN'),(656879,654361,'KPU KOTA PANGKALPINANG'),(659520,654556,'KPU KABUPATEN GORONTALO'),(659534,654556,'KPU KABUPATEN BOALEMO'),(659541,654556,'KPU KABUPATEN BONE BOLANGO'),(659555,654556,'KPU KABUPATEN POHUWATO'),(659562,654556,'KPU KOTA GORONTALO'),(670362,654556,'KPU KAB. GORONTALO UTARA'),(656883,654378,'KPU KABUPATEN BINTAN'),(656890,654378,'KPU KABUPATEN LINGGA'),(656905,654378,'KPU KABUPATEN KARIMUN'),(656912,654378,'KPU KABUPATEN NATUNA'),(656926,654378,'KPU KOTA BATAM'),(656930,654378,'KPU KOTA TANJUNG PINANG'),(670870,654378,'KPU KABUPATEN KEP. ANAMBAS'),(659932,654598,'KPU KABUPATEN FAK-FAK'),(659949,654598,'KPU KABUPATEN SORONG'),(659953,654598,'KPU KABUPATEN MANOKWARI'),(659960,654598,'KPU KABUPATEN SORONG SELATAN'),(659974,654598,'KPU KABUPATEN RAJA AMPAT'),(659981,654598,'KPU KABUPATEN KAIMANA'),(659995,654598,'KPU KABUPATEN TELUK BINTUNI'),(660003,654598,'KPU KABUPATEN TELUK WONDAMA'),(660010,654598,'KPU KOTA SORONG'),(680764,654598,'KPU KABUPATEN TAMBRAUW'),(680771,654598,'KPU KABUPATEN MAYBRAT'),(331104,654598,'KPU KABUPATEN PEGUNUNGAN ARFAK'),(331204,654598,'KPU KABUPATEN MANOKWARI SELATAN'),(659321,984767,'KPU KABUPATEN POLEWALI MAMASA'),(659335,984767,'KPU KABUPATEN MAJENE'),(659342,984767,'KPU KABUPATEN MAMUJU'),(659360,984767,'KPU KABUPATEN MAMASA'),(659381,984767,'KPU KABUPATEN PASANGKAYU'),(340545,984767,'KPU KABUPATEN MAMUJU TENGAH'),(417839,417755,'KPU KABUPATEN MALINAU'),(658862,417755,'KPU KABUPATEN NUNUKAN'),(417840,417755,'KPU KABUPATEN BULUNGAN'),(658923,417755,'KPU KOTA TARAKAN'),(670735,417755,'KPU KAB. TANA TINDUNG'),(9,27050,'INSPEKTORAT');
+/*!40000 ALTER TABLE `satker` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `state`
+--
+
+DROP TABLE IF EXISTS `state`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `state` (
+  `state_id` int NOT NULL,
+  `state_type_id` int DEFAULT NULL,
+  `process_id` int DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`state_id`) USING BTREE,
+  KEY `IXFK_state_state_type` (`state_type_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `state`
+--
+
+LOCK TABLES `state` WRITE;
+/*!40000 ALTER TABLE `state` DISABLE KEYS */;
+/*!40000 ALTER TABLE `state` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `state_activity`
+--
+
+DROP TABLE IF EXISTS `state_activity`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `state_activity` (
+  `state_id` int DEFAULT NULL,
+  `activity_id` int DEFAULT NULL,
+  KEY `IXFK_state_activity_activity` (`activity_id`) USING BTREE,
+  KEY `IXFK_state_activity_state` (`state_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `state_activity`
+--
+
+LOCK TABLES `state_activity` WRITE;
+/*!40000 ALTER TABLE `state_activity` DISABLE KEYS */;
+/*!40000 ALTER TABLE `state_activity` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `state_type`
+--
+
+DROP TABLE IF EXISTS `state_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `state_type` (
+  `state_type_id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`state_type_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `state_type`
+--
+
+LOCK TABLES `state_type` WRITE;
+/*!40000 ALTER TABLE `state_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `state_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statuses`
+--
+
+DROP TABLE IF EXISTS `statuses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `statuses` (
+  `id_statuses` int NOT NULL AUTO_INCREMENT,
+  `nama_status` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`id_statuses`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `statuses`
+--
+
+LOCK TABLES `statuses` WRITE;
+/*!40000 ALTER TABLE `statuses` DISABLE KEYS */;
+INSERT INTO `statuses` VALUES (1,'menunggu'),(2,'revisi'),(3,'disetujui');
+/*!40000 ALTER TABLE `statuses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sub_akun`
+--
+
+DROP TABLE IF EXISTS `sub_akun`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `sub_akun` (
+  `detail_id` int NOT NULL,
+  `kode_akun` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `detail` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `volum` decimal(10,0) DEFAULT NULL,
+  `sbm` double(10,2) DEFAULT NULL COMMENT 'SBM (Standar Biaya Maksimum)',
+  PRIMARY KEY (`detail_id`) USING BTREE,
+  KEY `IXFK_detail_akun` (`kode_akun`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='table detail';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sub_akun`
+--
+
+LOCK TABLES `sub_akun` WRITE;
+/*!40000 ALTER TABLE `sub_akun` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sub_akun` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subdetail`
+--
+
+DROP TABLE IF EXISTS `subdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `subdetail` (
+  `subdetail_id` int NOT NULL,
+  `id_detail` int DEFAULT NULL,
+  `detail` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `volum` decimal(10,0) DEFAULT NULL,
+  `sbm` double(10,2) DEFAULT NULL,
+  PRIMARY KEY (`subdetail_id`) USING BTREE,
+  KEY `IXFK_subdetail_detail` (`id_detail`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='table subdetai';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subdetail`
+--
+
+LOCK TABLES `subdetail` WRITE;
+/*!40000 ALTER TABLE `subdetail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `subdetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subkomponen`
+--
+
+DROP TABLE IF EXISTS `subkomponen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `subkomponen` (
+  `kode_subkomponen` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `kode_komponen` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `nama_subkomponen` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`kode_subkomponen`) USING BTREE,
+  KEY `IXFK_subkomponen_komponen` (`kode_komponen`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='tabel subkomponen';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subkomponen`
+--
+
+LOCK TABLES `subkomponen` WRITE;
+/*!40000 ALTER TABLE `subkomponen` DISABLE KEYS */;
+INSERT INTO `subkomponen` VALUES ('AA','005','Perencanaan dan Pengolahan Data Logistik Pemilu/Pemilihan');
+/*!40000 ALTER TABLE `subkomponen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `target`
+--
+
+DROP TABLE IF EXISTS `target`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `target` (
+  `target_id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`target_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `target`
+--
+
+LOCK TABLES `target` WRITE;
+/*!40000 ALTER TABLE `target` DISABLE KEYS */;
+/*!40000 ALTER TABLE `target` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `transition`
+--
+
+DROP TABLE IF EXISTS `transition`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `transition` (
+  `transition_id` int NOT NULL,
+  `process_id` int DEFAULT NULL,
+  `current_state_id` int DEFAULT NULL,
+  `next_state_id` int DEFAULT NULL,
+  PRIMARY KEY (`transition_id`) USING BTREE,
+  KEY `IXFK_transition_process` (`process_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transition`
+--
+
+LOCK TABLES `transition` WRITE;
+/*!40000 ALTER TABLE `transition` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transition` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `transition_action`
+--
+
+DROP TABLE IF EXISTS `transition_action`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `transition_action` (
+  `transition_id` int DEFAULT NULL,
+  `action_id` int DEFAULT NULL,
+  KEY `IXFK_transition_action_action` (`action_id`) USING BTREE,
+  KEY `IXFK_transition_action_transition` (`transition_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transition_action`
+--
+
+LOCK TABLES `transition_action` WRITE;
+/*!40000 ALTER TABLE `transition_action` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transition_action` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `transition_activity`
+--
+
+DROP TABLE IF EXISTS `transition_activity`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `transition_activity` (
+  `transition_id` int DEFAULT NULL,
+  `activity_id` int DEFAULT NULL,
+  KEY `IXFK_transition_activity_activity` (`activity_id`) USING BTREE,
+  KEY `IXFK_transition_activity_transition` (`transition_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=FIXED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transition_activity`
+--
+
+LOCK TABLES `transition_activity` WRITE;
+/*!40000 ALTER TABLE `transition_activity` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transition_activity` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `unit_org`
+--
+
+DROP TABLE IF EXISTS `unit_org`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `unit_org` (
+  `unit_org_id` int NOT NULL,
+  `nama_unit_org` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'unit org setara dgn nama provinsi.',
+  PRIMARY KEY (`unit_org_id`) USING BTREE,
+  KEY `unit_org_unit_org_id_index` (`unit_org_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='tabel unit_org adalah setara dgn provinsi';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `unit_org`
+--
+
+LOCK TABLES `unit_org` WRITE;
+/*!40000 ALTER TABLE `unit_org` DISABLE KEYS */;
+INSERT INTO `unit_org` VALUES (27050,'KOMISI PEMILIHAN UMUM'),(654382,'KPU PROVINSI DKI JAKARTA'),(654399,'KPU PROVINSI JAWA BARAT'),(654404,'KPU PROVINSI JAWA TENGAH'),(654411,'KPU DI YOGYAKARTA'),(654425,'KPU PROVINSI JAWA TIMUR'),(654289,'KIP ACEH'),(654293,'KPU PROVINSI SUMATERA UTARA'),(654301,'KPU PROVINSI SUMATERA BARAT'),(654315,'KPU PROVINSI RIAU'),(654322,'KPU PROVINSI JAMBI'),(654336,'KPU PROVINSI SUMATERA SELATAN'),(654357,'KPU PROVINSI LAMPUNG'),(654471,'KPU PROVINSI KALIMANTAN BARAT'),(654488,'KPU PROVINSI KALIMANTAN TENGAH'),(654492,'KPU PROVINSI KALIMANTAN SELATAN'),(654500,'KPU PROVINSI KALIMANTAN TIMUR'),(654514,'KPU PROVINSI SULAWESI UTARA'),(654521,'KPU PROVINSI SULAWESI TENGAH'),(654535,'KPU PROVINSI SULAWESI SELATAN'),(654542,'KPU PROVINSI SULAWESI TENGGARA'),(654560,'KPU PROVINSI MALUKU'),(654446,'KPU PROVINSI BALI'),(654450,'KPU PROVINSI NUSA TENGGARA BARAT'),(654467,'KPU PROVINSI NUSA TENGGARA TIMUR'),(654581,'KPU PROVINSI PAPUA'),(654340,'KPU PROVINSI BENGKULU'),(654577,'KPU PROVINSI MALUKU UTARA'),(654432,'KPU PROVINSI B A N T E N'),(654361,'KPU PROVINSI BANGKA BELITUNG'),(654556,'KPU PROVINSI GORONTALO'),(654378,'KPU PROVINSI KEPULAUAN RIAU'),(654598,'KPU PROVINSI PAPUA BARAT'),(984767,'KPU PROVINSI SULAWESI BARAT'),(417755,'KPU PROVINSI KALIMANTAN UTARA');
+/*!40000 ALTER TABLE `unit_org` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_level`
+--
+
+DROP TABLE IF EXISTS `user_level`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `user_level` (
+  `user_level_id` int NOT NULL,
+  `user_level_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`user_level_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='table user level';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_level`
+--
+
+LOCK TABLES `user_level` WRITE;
+/*!40000 ALTER TABLE `user_level` DISABLE KEYS */;
+INSERT INTO `user_level` VALUES (-2,'Anonymous'),(-1,'Administrator'),(0,'Default');
+/*!40000 ALTER TABLE `user_level` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_level_permission`
+--
+
+DROP TABLE IF EXISTS `user_level_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `user_level_permission` (
+  `user_level_permission_id` int NOT NULL AUTO_INCREMENT,
+  `user_level_id` int DEFAULT NULL,
+  `table_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `permission` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`user_level_permission_id`) USING BTREE,
+  KEY `IXFK_user_level_permission_user_level` (`user_level_id`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='table user_level_permission';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_level_permission`
+--
+
+LOCK TABLES `user_level_permission` WRITE;
+/*!40000 ALTER TABLE `user_level_permission` DISABLE KEYS */;
+INSERT INTO `user_level_permission` VALUES (1,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(2,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(3,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(4,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(5,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(6,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(7,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(8,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(9,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(10,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(11,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(12,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(13,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(14,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(15,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(16,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(17,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(18,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(19,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(20,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(21,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(22,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(23,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(24,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(25,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(26,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(27,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(28,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(29,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(30,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(31,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(32,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(33,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(34,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(35,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(36,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(37,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(38,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(39,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(40,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(41,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(42,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(43,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(44,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(45,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(46,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(47,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(48,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(49,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(50,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(51,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(52,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(53,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(54,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(55,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(56,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(57,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(58,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(59,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(60,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(61,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(62,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(63,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(64,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(65,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(66,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(67,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(68,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(69,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(70,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(71,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(72,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(73,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(74,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(75,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(76,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(77,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(78,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(79,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(80,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(81,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(82,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(83,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(84,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(85,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL),(86,0,'{3FF92178-1D32-4BE0-9DD5-F9AE0',NULL);
+/*!40000 ALTER TABLE `user_level_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `userlevelpermissions`
+--
+
+DROP TABLE IF EXISTS `userlevelpermissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `userlevelpermissions` (
+  `userlevelid` int NOT NULL,
+  `tablename` varchar(80) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `permission` int NOT NULL,
+  PRIMARY KEY (`userlevelid`,`tablename`) USING BTREE,
+  KEY `userlevelpermissions_userlevelid_index` (`userlevelid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `userlevelpermissions`
+--
+
+LOCK TABLES `userlevelpermissions` WRITE;
+/*!40000 ALTER TABLE `userlevelpermissions` DISABLE KEYS */;
+INSERT INTO `userlevelpermissions` VALUES (-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}action',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}action_target',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}action_type',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}activity',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}activity_target',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}activity_type',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}akun',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}akun-old',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}detail',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}group',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}group_member',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}kegiatan',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}komponen',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}kro',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}process',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}process_admin',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}program',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}rab_kegiatan',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}request',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}request_action',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}request_data',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}request_file',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}request_note',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}request_rab',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}request_stakeholder',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}ro',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}satker',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}state',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}state_activity',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}state_type',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}subdetail',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}subkomponen',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}target',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}transition',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}transition_action',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}transition_activity',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}unit_org',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}user_level',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}user_level_permission',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}users',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}view_akun',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}view_akun2',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}view_akun3',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}userlevelpermissions',0),(-2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}userlevels',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_target',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_type',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_target',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_type',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}akun',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}detail',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group_member',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kegiatan',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}komponen',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kro',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process_admin',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}program',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_kegiatan2',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_action',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_data',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_file',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_note',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_rab',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_stakeholder',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}ro',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}satker',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_activity',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_type',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subdetail',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subkomponen',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}target',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_action',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_activity',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}unit_org',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level_permission',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}users',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevelpermissions',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevels',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_uraian_level',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_7',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_1',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_2',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_3',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_4',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_5',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_6',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_akun',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kegiatan',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_komponen',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kro',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_program',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_ro',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_subkomponen',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}sub_akun',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_rincian',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}penelaah_note',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}reviewer_note',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_detail',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_file',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penelaah',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penyetuju',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_rab_menunggu',0),(-2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}statuses',0),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_target',64),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_target',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_target',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_target',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_type',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_type',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_type',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}action_type',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_target',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_target',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_target',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_target',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_type',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_type',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_type',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}activity_type',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}akun',360),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}akun',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}akun',296),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}akun',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}detail',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}detail',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}detail',296),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}detail',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group_member',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group_member',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group_member',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}group_member',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kegiatan',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kegiatan',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kegiatan',296),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kegiatan',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}komponen',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}komponen',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}komponen',296),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}komponen',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kro',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kro',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kro',296),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}kro',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process_admin',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process_admin',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process_admin',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}process_admin',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}program',367),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}program',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}program',296),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}program',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_kegiatan2',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_kegiatan2',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_kegiatan2',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_kegiatan2',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_action',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_action',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_action',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_action',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_data',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_data',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_data',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_data',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_file',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_file',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_file',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_file',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_note',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_note',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_note',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_note',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_rab',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_rab',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_rab',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_rab',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_stakeholder',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_stakeholder',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_stakeholder',32),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}request_stakeholder',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}ro',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}ro',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}ro',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}ro',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}satker',367),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}satker',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}satker',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}satker',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state',104),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_activity',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_activity',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_activity',352),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_activity',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_type',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_type',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_type',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}state_type',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subdetail',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subdetail',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subdetail',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subdetail',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subkomponen',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subkomponen',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subkomponen',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}subkomponen',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}target',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}target',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}target',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}target',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_action',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_action',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_action',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_action',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_activity',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_activity',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_activity',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}transition_activity',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}unit_org',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}unit_org',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}unit_org',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}unit_org',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level_permission',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level_permission',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level_permission',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}user_level_permission',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}users',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}users',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}users',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}users',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevelpermissions',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevelpermissions',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevelpermissions',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevelpermissions',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevels',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevels',0),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevels',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}userlevels',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_uraian_level',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_uraian_level',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_uraian_level',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_uraian_level',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_7',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_7',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_7',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_7',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_1',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_1',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_1',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_1',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_2',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_2',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_2',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_2',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_3',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_3',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_3',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_3',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_4',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_4',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_4',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_4',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_5',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_5',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_5',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_5',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_6',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_6',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_6',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_level_6',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_akun',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_akun',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_akun',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_akun',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kegiatan',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kegiatan',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kegiatan',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kegiatan',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_komponen',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_komponen',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_komponen',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_komponen',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kro',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kro',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kro',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_kro',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_program',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_program',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_program',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_program',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_ro',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_ro',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_ro',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_ro',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_subkomponen',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_subkomponen',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_subkomponen',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_subkomponen',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab',365),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab',367),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}sub_akun',360),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}sub_akun',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}sub_akun',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}sub_akun',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_rincian',367),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_rincian',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_rincian',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_rincian',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}penelaah_note',360),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}penelaah_note',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}penelaah_note',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}penelaah_note',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}reviewer_note',360),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}reviewer_note',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}reviewer_note',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}reviewer_note',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_detail',367),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_detail',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_detail',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_detail',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_file',367),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_file',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_file',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_file',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penelaah',367),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penelaah',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penelaah',367),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penelaah',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penyetuju',367),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penyetuju',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penyetuju',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}rab_note_penyetuju',367),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_rab_menunggu',0),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_rab_menunggu',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_rab_menunggu',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}v_rab_menunggu',360),(0,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}statuses',96),(1,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}statuses',367),(2,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}statuses',360),(3,'{B20675D9-527F-46BA-86B0-8B4F29ABE0ED}statuses',360),(2,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}rab_kegiatan',360),(0,'{3FF92178-1D32-4BE0-9DD5-F9AE0AA92353}kegiatan',367);
+/*!40000 ALTER TABLE `userlevelpermissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `userlevels`
+--
+
+DROP TABLE IF EXISTS `userlevels`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `userlevels` (
+  `userlevelid` int NOT NULL,
+  `userlevelname` varchar(80) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`userlevelid`) USING BTREE,
+  KEY `userlevels_userlevelid_index` (`userlevelid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `userlevels`
+--
+
+LOCK TABLES `userlevels` WRITE;
+/*!40000 ALTER TABLE `userlevels` DISABLE KEYS */;
+INSERT INTO `userlevels` VALUES (-2,'Anonymous'),(-1,'Administrator'),(0,'Default'),(1,'AdminKPU'),(2,'Penelaah'),(3,'Reviewer');
+/*!40000 ALTER TABLE `userlevels` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8  */;
+CREATE TABLE `users` (
+  `user_id` int NOT NULL,
+  `user_level_permission_id` int DEFAULT NULL,
+  `username` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `nama_lengkap` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `satker` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `nip` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'NIP (Nomer Induk Pegawai).',
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`) USING BTREE,
+  KEY `IXFK_users_user_level_permission` (`user_level_permission_id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_general_ci  ROW_FORMAT=DYNAMIC COMMENT='table users';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (10,0,'staf01','Pass123','Staf Aja','KPU KOTA JAKARTA SELATAN','123456789','2022-08-01 17:00:00'),(1,-1,'admin01','Pass123','Admin Saja','KPU KOTA JAKARTA PUSAT','007','2022-08-02 17:00:00'),(2,1,'perkasa01','Pass123','Admin KPU','KPU KOTA JAKARTA PUSAT','008','2022-08-02 17:00:00'),(21,2,'penelaah1','Pass1234!','staff penelaah 1','INSPEKTORAT','009009009','2022-08-01 17:00:00'),(22,3,'reviewer1','Pass1234!','reviewer1','KPU KOTA JAKARTA PUSAT','800700077','2022-08-02 17:00:00');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Final view structure for view `v_uraian_level`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_uraian_level`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8  */;
+/*!50001 SET character_set_results     = utf8  */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_uraian_level` AS select `t1`.`id` AS `id`,`t1`.`kode` AS `kode`,`t1`.`uraian` AS `uraian`,1 AS `level`,`t1`.`uraian` AS `uraian_level1`,NULL AS `uraian_level2`,NULL AS `uraian_level3`,NULL AS `uraian_level4`,NULL AS `uraian_level5`,NULL AS `uraian_level6`,NULL AS `uraian_level7`,`t1`.`kode` AS `path` from `akun` `t1` where (`t1`.`parent_id` is null) union all select `t2`.`id` AS `id`,`t2`.`kode` AS `kode`,`t2`.`uraian` AS `uraian`,2 AS `level`,`t1`.`uraian` AS `uraian_level1`,`t2`.`uraian` AS `uraian_level2`,NULL AS `uraian_level3`,NULL AS `uraian_level4`,NULL AS `uraian_level5`,NULL AS `uraian_level6`,NULL AS `uraian_level7`,concat(`t1`.`kode`,'.',`t2`.`kode`) AS `path` from (`akun` `t1` join `akun` `t2` on((`t2`.`parent_id` = `t1`.`id`))) where (`t1`.`parent_id` is null) union all select `t3`.`id` AS `id`,`t3`.`kode` AS `kode`,`t3`.`uraian` AS `uraian`,3 AS `level`,`t1`.`uraian` AS `uraian_level1`,`t2`.`uraian` AS `uraian_level2`,`t3`.`uraian` AS `uraian_level3`,NULL AS `uraian_level4`,NULL AS `uraian_level5`,NULL AS `uraian_level6`,NULL AS `uraian_level7`,concat(`t1`.`kode`,'.',`t2`.`kode`,'.',`t3`.`kode`) AS `path` from ((`akun` `t1` join `akun` `t2` on((`t2`.`parent_id` = `t1`.`id`))) join `akun` `t3` on((`t3`.`parent_id` = `t2`.`id`))) where (`t1`.`parent_id` is null) union all select `t4`.`id` AS `id`,`t4`.`kode` AS `kode`,`t4`.`uraian` AS `uraian`,4 AS `level`,`t1`.`uraian` AS `uraian_level1`,`t2`.`uraian` AS `uraian_level2`,`t3`.`uraian` AS `uraian_level3`,`t4`.`uraian` AS `uraian_level4`,NULL AS `uraian_level5`,NULL AS `uraian_level6`,NULL AS `uraian_level7`,concat(`t1`.`kode`,'.',`t2`.`kode`,'.',`t3`.`kode`,'.',`t4`.`kode`) AS `path` from (((`akun` `t1` join `akun` `t2` on((`t2`.`parent_id` = `t1`.`id`))) join `akun` `t3` on((`t3`.`parent_id` = `t2`.`id`))) join `akun` `t4` on((`t4`.`parent_id` = `t3`.`id`))) where (`t1`.`parent_id` is null) union all select `t5`.`id` AS `id`,`t5`.`kode` AS `kode`,`t5`.`uraian` AS `uraian`,5 AS `level`,`t1`.`uraian` AS `uraian_level1`,`t2`.`uraian` AS `uraian_level2`,`t3`.`uraian` AS `uraian_level3`,`t4`.`uraian` AS `uraian_level4`,`t5`.`uraian` AS `uraian_level5`,NULL AS `uraian_level6`,NULL AS `uraian_level7`,concat(`t1`.`kode`,'.',`t2`.`kode`,'.',`t3`.`kode`,'.',`t4`.`kode`,'.',`t5`.`kode`) AS `path` from ((((`akun` `t1` join `akun` `t2` on((`t2`.`parent_id` = `t1`.`id`))) join `akun` `t3` on((`t3`.`parent_id` = `t2`.`id`))) join `akun` `t4` on((`t4`.`parent_id` = `t3`.`id`))) join `akun` `t5` on((`t5`.`parent_id` = `t4`.`id`))) where (`t1`.`parent_id` is null) union all select `t6`.`id` AS `id`,`t6`.`kode` AS `kode`,`t6`.`uraian` AS `uraian`,6 AS `level`,`t1`.`uraian` AS `uraian_level1`,`t2`.`uraian` AS `uraian_level2`,`t3`.`uraian` AS `uraian_level3`,`t4`.`uraian` AS `uraian_level4`,`t5`.`uraian` AS `uraian_level5`,`t6`.`uraian` AS `uraian_level6`,NULL AS `uraian_level7`,concat(`t1`.`kode`,'.',`t2`.`kode`,'.',`t3`.`kode`,'.',`t4`.`kode`,'.',`t5`.`kode`,'.',`t6`.`kode`) AS `path` from (((((`akun` `t1` join `akun` `t2` on((`t2`.`parent_id` = `t1`.`id`))) join `akun` `t3` on((`t3`.`parent_id` = `t2`.`id`))) join `akun` `t4` on((`t4`.`parent_id` = `t3`.`id`))) join `akun` `t5` on((`t5`.`parent_id` = `t4`.`id`))) join `akun` `t6` on((`t6`.`parent_id` = `t5`.`id`))) where (`t1`.`parent_id` is null) union all select `t7`.`id` AS `id`,`t7`.`kode` AS `kode`,`t7`.`uraian` AS `uraian`,7 AS `level`,`t1`.`uraian` AS `uraian_level1`,`t2`.`uraian` AS `uraian_level2`,`t3`.`uraian` AS `uraian_level3`,`t4`.`uraian` AS `uraian_level4`,`t5`.`uraian` AS `uraian_level5`,`t6`.`uraian` AS `uraian_level6`,`t6`.`uraian` AS `uraian_level7`,concat(`t1`.`kode`,'.',`t2`.`kode`,'.',`t3`.`kode`,'.',`t4`.`kode`,'.',`t5`.`kode`,'.',`t6`.`kode`,'.',`t7`.`kode`) AS `path` from ((((((`akun` `t1` join `akun` `t2` on((`t2`.`parent_id` = `t1`.`id`))) join `akun` `t3` on((`t3`.`parent_id` = `t2`.`id`))) join `akun` `t4` on((`t4`.`parent_id` = `t3`.`id`))) join `akun` `t5` on((`t5`.`parent_id` = `t4`.`id`))) join `akun` `t6` on((`t6`.`parent_id` = `t5`.`id`))) join `akun` `t7` on((`t7`.`parent_id` = `t6`.`id`))) where (`t1`.`parent_id` is null) order by `path` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+--
+-- Temporary view structure for view `v_akun`
+--
+
+DROP TABLE IF EXISTS `v_akun`;
+/*!50001 DROP VIEW IF EXISTS `v_akun`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_akun` AS SELECT 
+ 1 AS `Kode`,
+ 1 AS `Uraian`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_kegiatan`
+--
+
+DROP TABLE IF EXISTS `v_kegiatan`;
+/*!50001 DROP VIEW IF EXISTS `v_kegiatan`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_kegiatan` AS SELECT 
+ 1 AS `level`,
+ 1 AS `Kode`,
+ 1 AS `Kegiatan`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_komponen`
+--
+
+DROP TABLE IF EXISTS `v_komponen`;
+/*!50001 DROP VIEW IF EXISTS `v_komponen`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_komponen` AS SELECT 
+ 1 AS `level`,
+ 1 AS `Kode`,
+ 1 AS `Komponen`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_kro`
+--
+
+DROP TABLE IF EXISTS `v_kro`;
+/*!50001 DROP VIEW IF EXISTS `v_kro`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_kro` AS SELECT 
+ 1 AS `level`,
+ 1 AS `Kode`,
+ 1 AS `KRO`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_level_1`
+--
+
+DROP TABLE IF EXISTS `v_level_1`;
+/*!50001 DROP VIEW IF EXISTS `v_level_1`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_level_1` AS SELECT 
+ 1 AS `id`,
+ 1 AS `kode`,
+ 1 AS `uraian`,
+ 1 AS `level`,
+ 1 AS `uraian_level1`,
+ 1 AS `uraian_level2`,
+ 1 AS `uraian_level3`,
+ 1 AS `uraian_level4`,
+ 1 AS `uraian_level5`,
+ 1 AS `uraian_level6`,
+ 1 AS `uraian_level7`,
+ 1 AS `path`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_level_2`
+--
+
+DROP TABLE IF EXISTS `v_level_2`;
+/*!50001 DROP VIEW IF EXISTS `v_level_2`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_level_2` AS SELECT 
+ 1 AS `id`,
+ 1 AS `kode`,
+ 1 AS `uraian`,
+ 1 AS `level`,
+ 1 AS `uraian_level1`,
+ 1 AS `uraian_level2`,
+ 1 AS `uraian_level3`,
+ 1 AS `uraian_level4`,
+ 1 AS `uraian_level5`,
+ 1 AS `uraian_level6`,
+ 1 AS `uraian_level7`,
+ 1 AS `path`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_level_3`
+--
+
+DROP TABLE IF EXISTS `v_level_3`;
+/*!50001 DROP VIEW IF EXISTS `v_level_3`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_level_3` AS SELECT 
+ 1 AS `id`,
+ 1 AS `kode`,
+ 1 AS `uraian`,
+ 1 AS `level`,
+ 1 AS `uraian_level1`,
+ 1 AS `uraian_level2`,
+ 1 AS `uraian_level3`,
+ 1 AS `uraian_level4`,
+ 1 AS `uraian_level5`,
+ 1 AS `uraian_level6`,
+ 1 AS `uraian_level7`,
+ 1 AS `path`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_level_4`
+--
+
+DROP TABLE IF EXISTS `v_level_4`;
+/*!50001 DROP VIEW IF EXISTS `v_level_4`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_level_4` AS SELECT 
+ 1 AS `id`,
+ 1 AS `kode`,
+ 1 AS `uraian`,
+ 1 AS `level`,
+ 1 AS `uraian_level1`,
+ 1 AS `uraian_level2`,
+ 1 AS `uraian_level3`,
+ 1 AS `uraian_level4`,
+ 1 AS `uraian_level5`,
+ 1 AS `uraian_level6`,
+ 1 AS `uraian_level7`,
+ 1 AS `path`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_level_5`
+--
+
+DROP TABLE IF EXISTS `v_level_5`;
+/*!50001 DROP VIEW IF EXISTS `v_level_5`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_level_5` AS SELECT 
+ 1 AS `id`,
+ 1 AS `kode`,
+ 1 AS `uraian`,
+ 1 AS `level`,
+ 1 AS `uraian_level1`,
+ 1 AS `uraian_level2`,
+ 1 AS `uraian_level3`,
+ 1 AS `uraian_level4`,
+ 1 AS `uraian_level5`,
+ 1 AS `uraian_level6`,
+ 1 AS `uraian_level7`,
+ 1 AS `path`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_level_6`
+--
+
+DROP TABLE IF EXISTS `v_level_6`;
+/*!50001 DROP VIEW IF EXISTS `v_level_6`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_level_6` AS SELECT 
+ 1 AS `id`,
+ 1 AS `kode`,
+ 1 AS `uraian`,
+ 1 AS `level`,
+ 1 AS `uraian_level1`,
+ 1 AS `uraian_level2`,
+ 1 AS `uraian_level3`,
+ 1 AS `uraian_level4`,
+ 1 AS `uraian_level5`,
+ 1 AS `uraian_level6`,
+ 1 AS `uraian_level7`,
+ 1 AS `path`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_level_7`
+--
+
+DROP TABLE IF EXISTS `v_level_7`;
+/*!50001 DROP VIEW IF EXISTS `v_level_7`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_level_7` AS SELECT 
+ 1 AS `id`,
+ 1 AS `kode`,
+ 1 AS `uraian`,
+ 1 AS `level`,
+ 1 AS `uraian_level1`,
+ 1 AS `uraian_level2`,
+ 1 AS `uraian_level3`,
+ 1 AS `uraian_level4`,
+ 1 AS `uraian_level5`,
+ 1 AS `uraian_level6`,
+ 1 AS `uraian_level7`,
+ 1 AS `path`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_program`
+--
+
+DROP TABLE IF EXISTS `v_program`;
+/*!50001 DROP VIEW IF EXISTS `v_program`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_program` AS SELECT 
+ 1 AS `level`,
+ 1 AS `Kode`,
+ 1 AS `Program`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_rab_menunggu`
+--
+
+DROP TABLE IF EXISTS `v_rab_menunggu`;
+/*!50001 DROP VIEW IF EXISTS `v_rab_menunggu`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_rab_menunggu` AS SELECT 
+ 1 AS `id_rab`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_rab_report`
+--
+
+DROP TABLE IF EXISTS `v_rab_report`;
+/*!50001 DROP VIEW IF EXISTS `v_rab_report`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_rab_report` AS SELECT 
+ 1 AS `nama_satker`,
+ 1 AS `kode_kegiatan`,
+ 1 AS `uraian`,
+ 1 AS `volum`,
+ 1 AS `satuan`,
+ 1 AS `sbm`,
+ 1 AS `kode_akun`,
+ 1 AS `subtotal`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_rab_status`
+--
+
+DROP TABLE IF EXISTS `v_rab_status`;
+/*!50001 DROP VIEW IF EXISTS `v_rab_status`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_rab_status` AS SELECT 
+ 1 AS `nama_satker`,
+ 1 AS `subtotal`,
+ 1 AS `id_statuses`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_ro`
+--
+
+DROP TABLE IF EXISTS `v_ro`;
+/*!50001 DROP VIEW IF EXISTS `v_ro`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_ro` AS SELECT 
+ 1 AS `level`,
+ 1 AS `Kode`,
+ 1 AS `RO`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_subkomponen`
+--
+
+DROP TABLE IF EXISTS `v_subkomponen`;
+/*!50001 DROP VIEW IF EXISTS `v_subkomponen`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_subkomponen` AS SELECT 
+ 1 AS `level`,
+ 1 AS `Kode`,
+ 1 AS `Sub Komponen`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_uraian_level`
+--
+
+DROP TABLE IF EXISTS `v_uraian_level`;
+/*!50001 DROP VIEW IF EXISTS `v_uraian_level`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8  */;
+/*!50001 CREATE VIEW `v_uraian_level` AS SELECT 
+ 1 AS `id`,
+ 1 AS `kode`,
+ 1 AS `uraian`,
+ 1 AS `level`,
+ 1 AS `uraian_level1`,
+ 1 AS `uraian_level2`,
+ 1 AS `uraian_level3`,
+ 1 AS `uraian_level4`,
+ 1 AS `uraian_level5`,
+ 1 AS `uraian_level6`,
+ 1 AS `uraian_level7`,
+ 1 AS `path`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `v_akun`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_akun`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8  */;
+/*!50001 SET character_set_results     = utf8  */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_akun` AS select `v_uraian_level`.`kode` AS `Kode`,`v_uraian_level`.`uraian` AS `Uraian` from `v_uraian_level` where (`v_uraian_level`.`level` = 7) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_kegiatan`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_kegiatan`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8  */;
+/*!50001 SET character_set_results     = utf8  */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_kegiatan` AS select `v_uraian_level`.`level` AS `level`,`v_uraian_level`.`kode` AS `Kode`,`v_uraian_level`.`uraian` AS `Kegiatan` from `v_uraian_level` where (`v_uraian_level`.`level` = 2) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_komponen`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_komponen`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8  */;
+/*!50001 SET character_set_results     = utf8  */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_komponen` AS select `v_uraian_level`.`level` AS `level`,`v_uraian_level`.`kode` AS `Kode`,`v_uraian_level`.`uraian` AS `Komponen` from `v_uraian_level` where (`v_uraian_level`.`level` = 5) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_kro`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_kro`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8  */;
+/*!50001 SET character_set_results     = utf8  */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_kro` AS select `v_uraian_level`.`level` AS `level`,`v_uraian_level`.`kode` AS `Kode`,`v_uraian_level`.`uraian` AS `KRO` from `v_uraian_level` where (`v_uraian_level`.`level` = 3) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_level_1`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_level_1`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8  */;
+/*!50001 SET character_set_results     = utf8  */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_level_1` AS select `v_uraian_level`.`id` AS `id`,`v_uraian_level`.`kode` AS `kode`,`v_uraian_level`.`uraian` AS `uraian`,`v_uraian_level`.`level` AS `level`,`v_uraian_level`.`uraian_level1` AS `uraian_level1`,`v_uraian_level`.`uraian_level2` AS `uraian_level2`,`v_uraian_level`.`uraian_level3` AS `uraian_level3`,`v_uraian_level`.`uraian_level4` AS `uraian_level4`,`v_uraian_level`.`uraian_level5` AS `uraian_level5`,`v_uraian_level`.`uraian_level6` AS `uraian_level6`,`v_uraian_level`.`uraian_level7` AS `uraian_level7`,`v_uraian_level`.`path` AS `path` from `v_uraian_level` where (`v_uraian_level`.`level` = 1) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_level_2`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_level_2`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8  */;
+/*!50001 SET character_set_results     = utf8  */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_level_2` AS select `v_uraian_level`.`id` AS `id`,`v_uraian_level`.`kode` AS `kode`,`v_uraian_level`.`uraian` AS `uraian`,`v_uraian_level`.`level` AS `level`,`v_uraian_level`.`uraian_level1` AS `uraian_level1`,`v_uraian_level`.`uraian_level2` AS `uraian_level2`,`v_uraian_level`.`uraian_level3` AS `uraian_level3`,`v_uraian_level`.`uraian_level4` AS `uraian_level4`,`v_uraian_level`.`uraian_level5` AS `uraian_level5`,`v_uraian_level`.`uraian_level6` AS `uraian_level6`,`v_uraian_level`.`uraian_level7` AS `uraian_level7`,`v_uraian_level`.`path` AS `path` from `v_uraian_level` where (`v_uraian_level`.`level` = 2) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_level_3`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_level_3`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8  */;
+/*!50001 SET character_set_results     = utf8  */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_level_3` AS select `v_uraian_level`.`id` AS `id`,`v_uraian_level`.`kode` AS `kode`,`v_uraian_level`.`uraian` AS `uraian`,`v_uraian_level`.`level` AS `level`,`v_uraian_level`.`uraian_level1` AS `uraian_level1`,`v_uraian_level`.`uraian_level2` AS `uraian_level2`,`v_uraian_level`.`uraian_level3` AS `uraian_level3`,`v_uraian_level`.`uraian_level4` AS `uraian_level4`,`v_uraian_level`.`uraian_level5` AS `uraian_level5`,`v_uraian_level`.`uraian_level6` AS `uraian_level6`,`v_uraian_level`.`uraian_level7` AS `uraian_level7`,`v_uraian_level`.`path` AS `path` from `v_uraian_level` where (`v_uraian_level`.`level` = 3) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_level_4`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_level_4`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8  */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_level_4` AS select `v_uraian_level`.`id` AS `id`,`v_uraian_level`.`kode` AS `kode`,`v_uraian_level`.`uraian` AS `uraian`,`v_uraian_level`.`level` AS `level`,`v_uraian_level`.`uraian_level1` AS `uraian_level1`,`v_uraian_level`.`uraian_level2` AS `uraian_level2`,`v_uraian_level`.`uraian_level3` AS `uraian_level3`,`v_uraian_level`.`uraian_level4` AS `uraian_level4`,`v_uraian_level`.`uraian_level5` AS `uraian_level5`,`v_uraian_level`.`uraian_level6` AS `uraian_level6`,`v_uraian_level`.`uraian_level7` AS `uraian_level7`,`v_uraian_level`.`path` AS `path` from `v_uraian_level` where (`v_uraian_level`.`level` = 4) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_level_5`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_level_5`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_level_5` AS select `v_uraian_level`.`id` AS `id`,`v_uraian_level`.`kode` AS `kode`,`v_uraian_level`.`uraian` AS `uraian`,`v_uraian_level`.`level` AS `level`,`v_uraian_level`.`uraian_level1` AS `uraian_level1`,`v_uraian_level`.`uraian_level2` AS `uraian_level2`,`v_uraian_level`.`uraian_level3` AS `uraian_level3`,`v_uraian_level`.`uraian_level4` AS `uraian_level4`,`v_uraian_level`.`uraian_level5` AS `uraian_level5`,`v_uraian_level`.`uraian_level6` AS `uraian_level6`,`v_uraian_level`.`uraian_level7` AS `uraian_level7`,`v_uraian_level`.`path` AS `path` from `v_uraian_level` where (`v_uraian_level`.`level` = 5) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_level_6`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_level_6`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_level_6` AS select `v_uraian_level`.`id` AS `id`,`v_uraian_level`.`kode` AS `kode`,`v_uraian_level`.`uraian` AS `uraian`,`v_uraian_level`.`level` AS `level`,`v_uraian_level`.`uraian_level1` AS `uraian_level1`,`v_uraian_level`.`uraian_level2` AS `uraian_level2`,`v_uraian_level`.`uraian_level3` AS `uraian_level3`,`v_uraian_level`.`uraian_level4` AS `uraian_level4`,`v_uraian_level`.`uraian_level5` AS `uraian_level5`,`v_uraian_level`.`uraian_level6` AS `uraian_level6`,`v_uraian_level`.`uraian_level7` AS `uraian_level7`,`v_uraian_level`.`path` AS `path` from `v_uraian_level` where (`v_uraian_level`.`level` = 6) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_level_7`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_level_7`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_level_7` AS select `v_uraian_level`.`id` AS `id`,`v_uraian_level`.`kode` AS `kode`,`v_uraian_level`.`uraian` AS `uraian`,`v_uraian_level`.`level` AS `level`,`v_uraian_level`.`uraian_level1` AS `uraian_level1`,`v_uraian_level`.`uraian_level2` AS `uraian_level2`,`v_uraian_level`.`uraian_level3` AS `uraian_level3`,`v_uraian_level`.`uraian_level4` AS `uraian_level4`,`v_uraian_level`.`uraian_level5` AS `uraian_level5`,`v_uraian_level`.`uraian_level6` AS `uraian_level6`,`v_uraian_level`.`uraian_level7` AS `uraian_level7`,`v_uraian_level`.`path` AS `path` from `v_uraian_level` where (`v_uraian_level`.`level` = 7) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_program`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_program`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_program` AS select `v_uraian_level`.`level` AS `level`,`v_uraian_level`.`kode` AS `Kode`,`v_uraian_level`.`uraian` AS `Program` from `v_uraian_level` where (`v_uraian_level`.`level` = 1) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_rab_menunggu`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_rab_menunggu`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_rab_menunggu` AS select `rab`.`id_rab` AS `id_rab` from `rab` where (`rab`.`id_statuses` = 1) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_rab_report`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_rab_report`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_rab_report` AS select `satker`.`nama_satker` AS `nama_satker`,`rab`.`kode_kegiatan` AS `kode_kegiatan`,`rab_rincian`.`uraian` AS `uraian`,`rab_rincian`.`volum` AS `volum`,`rab_rincian`.`satuan` AS `satuan`,`rab_rincian`.`sbm` AS `sbm`,`rab_rincian`.`kode_akun` AS `kode_akun`,`rab_rincian`.`subtotal` AS `subtotal` from ((`rab_rincian` join `rab` on((`rab`.`id_rab` = `rab_rincian`.`id_rab`))) join `satker` on((`rab`.`satker_id` = `satker`.`satker_id`))) group by `satker`.`nama_satker`,`rab`.`kode_kegiatan`,`rab_rincian`.`uraian`,`rab_rincian`.`volum`,`rab_rincian`.`satuan`,`rab_rincian`.`sbm`,`rab_rincian`.`kode_akun`,`rab_rincian`.`subtotal` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_rab_status`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_rab_status`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_rab_status` AS select `satker`.`nama_satker` AS `nama_satker`,`rab_rincian`.`subtotal` AS `subtotal`,`rab`.`id_statuses` AS `id_statuses` from (((`rab` join `rab_rincian` on((`rab`.`id_rab` = `rab_rincian`.`id_rab`))) join `satker` on((`rab`.`satker_id` = `satker`.`satker_id`))) join `statuses` on((`statuses`.`id_statuses` = `rab`.`id_statuses`))) group by `satker`.`nama_satker`,`rab_rincian`.`subtotal`,`statuses`.`nama_status`,`rab`.`id_statuses` order by `rab`.`id_statuses` desc */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_ro`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_ro`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_ro` AS select `v_uraian_level`.`level` AS `level`,`v_uraian_level`.`kode` AS `Kode`,`v_uraian_level`.`uraian` AS `RO` from `v_uraian_level` where (`v_uraian_level`.`level` = 4) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_subkomponen`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_subkomponen`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8_general_ci*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_subkomponen` AS select `v_uraian_level`.`level` AS `level`,`v_uraian_level`.`kode` AS `Kode`,`v_uraian_level`.`uraian` AS `Sub Komponen` from `v_uraian_level` where (`v_uraian_level`.`level` = 6) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+
+-- Dump completed on 2022-08-05 10:36:00
