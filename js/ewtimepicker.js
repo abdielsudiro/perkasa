@@ -1,0 +1,5 @@
+/**
+ * Create Time Picker (for PHPMaker 2021)
+ * @license Copyright (c) e.World Technology Limited. All rights reserved.
+ */
+ew.createTimePicker=function(i,t,e){if(!t.includes("$rowindex$")){var o=jQuery,n=o(ew.getElement(t,i));if(!n.hasClass("ui-timepicker-input")){e.timeFormat&&":"!=ew.TIME_SEPARATOR&&(e.timeFormat=e.timeFormat.replace(/:/g,ew.TIME_SEPARATOR));var a=!o.isBoolean(e.inputGroup)||e.inputGroup;if(delete e.inputGroup,n.timepicker(e).on("showTimepicker",(function(){n.data("timepicker-list").width(n.outerWidth()-2)})),n.focus((function(){n.tooltip("hide").tooltip("disable")})).blur((function(){n.tooltip("enable")})),a){var p=o('<button type="button"><i class="far fa-clock"></i></button>').addClass("btn btn-default").click((function(){n.timepicker("show")}));n.wrap('<div class="input-group"></div>').after(o('<div class="input-group-append"></div>').append(p))}}}};
