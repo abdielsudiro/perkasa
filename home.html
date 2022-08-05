@@ -1,0 +1,2246 @@
+<html style="height: auto;">
+
+<head>
+    <title>Perkasa</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/perkasa2/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/perkasa2/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="/perkasa2/adminlte3/css/adminlte.css">
+    <link rel="stylesheet" href="/perkasa2/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/perkasa2/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="/perkasa2/css/perkasa2.css">
+    <script src="/perkasa2/js/ewcore.min.js"></script>
+    <script>
+        var $rowindex$ = null;
+        Object.assign(ew, {
+            LANGUAGE_ID: "en",
+            DATE_SEPARATOR: "/", // Date separator
+            TIME_SEPARATOR: ":", // Time separator
+            DATE_FORMAT: "mm/dd/yyyy", // Default date format
+            DATE_FORMAT_ID: 6, // Default date format ID
+            DATETIME_WITHOUT_SECONDS: false, // Date/Time without seconds
+            DECIMAL_POINT: ".",
+            THOUSANDS_SEP: ",",
+            SESSION_TIMEOUT: 0, // Session timeout time (seconds)
+            SESSION_TIMEOUT_COUNTDOWN: 60, // Count down time to session timeout (seconds)
+            SESSION_KEEP_ALIVE_INTERVAL: 0, // Keep alive interval (seconds)
+            IS_LOGGEDIN: false, // Is logged in
+            IS_SYS_ADMIN: false, // Is sys admin
+            CURRENT_USER_NAME: "", // Current user name
+            IS_AUTOLOGIN: false, // Is logged in with option "Auto login until I logout explicitly"
+            TIMEOUT_URL: "/perkasa2/logout", // Timeout URL // PHP
+            TOKEN_NAME_KEY: "csrf_name", // Token name key
+            TOKEN_NAME: "csrf62e86eaf5f1f4", // Token name
+            API_FILE_TOKEN_NAME: "filetoken", // API file token name
+            API_URL: "api/", // API file name // PHP
+            API_ACTION_NAME: "action", // API action name
+            API_OBJECT_NAME: "table", // API object name
+            API_LIST_ACTION: "list", // API list action
+            API_VIEW_ACTION: "view", // API view action
+            API_ADD_ACTION: "add", // API add action
+            API_EDIT_ACTION: "edit", // API edit action
+            API_DELETE_ACTION: "delete", // API delete action
+            API_LOGIN_ACTION: "login", // API login action
+            API_FILE_ACTION: "file", // API file action
+            API_UPLOAD_ACTION: "upload", // API upload action
+            API_JQUERY_UPLOAD_ACTION: "jupload", // API jQuery upload action
+            API_SESSION_ACTION: "session", // API get session action
+            API_LOOKUP_ACTION: "lookup", // API lookup action
+            API_LOOKUP_PAGE: "page", // API lookup page name
+            API_PROGRESS_ACTION: "progress", // API progress action
+            API_EXPORT_CHART_ACTION: "chart", // API export chart action
+            API_JWT_AUTHORIZATION_HEADER: "X-Authorization", // API JWT authorization header
+            API_JWT_TOKEN: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NTkzOTk4NTUsImp0aSI6IlRvQmUwNEw4YmNQK2s1MnVXdzNsaDBRTTFqTW44MmZKY2J3Y2pXbVExanc9IiwiaXNzIjoibG9jYWxob3N0IiwibmJmIjowLCJleHAiOjE2NTk0MDEyOTUsInNlY3VyaXR5Ijp7InVzZXJuYW1lIjpudWxsLCJ1c2VyaWQiOm51bGwsInBhcmVudHVzZXJpZCI6bnVsbCwidXNlcmxldmVsaWQiOi0yfX0.pniSi9LdeUCuVNpdxjsc3bzN7lafO3amytxIrn-c7WT_TdpywtQ9PdXbZY1xDHdptDxEAKlB-GxbMJKjYHObOQ", // API JWT token
+            MULTIPLE_OPTION_SEPARATOR: ",", // Multiple option separator
+            AUTO_SUGGEST_MAX_ENTRIES: 10, // Auto-Suggest max entries
+            IMAGE_FOLDER: "images/", // Image folder
+            PATH_BASE: "/perkasa2/", // Path base // PHP
+            SESSION_ID: "wMoQM_mPAcFxo78J9s7frgcmzHE6LIwXm17OIRQBW7M.", // Session ID
+            UPLOAD_THUMBNAIL_WIDTH: 200, // Upload thumbnail width
+            UPLOAD_THUMBNAIL_HEIGHT: 0, // Upload thumbnail height
+            MULTIPLE_UPLOAD_SEPARATOR: ",", // Upload multiple separator
+            IMPORT_FILE_ALLOWED_EXT: "csv,xls,xlsx", // Import file allowed extensions
+            USE_COLORBOX: true,
+            USE_JAVASCRIPT_MESSAGE: true,
+            PROJECT_STYLESHEET_FILENAME: "/perkasa2/css/perkasa2.css", // Project style sheet
+            PDF_STYLESHEET_FILENAME: "css/ewpdf.css", // PDF style sheet // PHP
+            EMBED_PDF: true,
+            ANTIFORGERY_TOKEN_KEY: "csrf_value", // PHP
+            ANTIFORGERY_TOKEN: "9c544238edfa9905bb4b2bc5431ff11b", // PHP
+            CSS_FLIP: false,
+            LAZY_LOAD: true,
+            USE_RESPONSIVE_TABLE: true,
+            RESPONSIVE_TABLE_CLASS: "table-responsive",
+            DEBUG: false,
+            SEARCH_FILTER_OPTION: "Client",
+            OPTION_HTML_TEMPLATE: "<span class=\"ew-option\">{value}</span>",
+            USE_OVERLAY_SCROLLBARS: false,
+            REMOVE_XSS: true,
+            ENCRYPTED_PASSWORD: false,
+            INVALID_USERNAME_CHARACTERS: "<>\"'&",
+            INVALID_PASSWORD_CHARACTERS: "<>\"'&",
+            IS_RTL: false
+        });
+        loadjs(ew.PATH_BASE + "jquery/jquery-3.6.0.min.js", "jquery");
+        loadjs([
+            ew.PATH_BASE + "js/mobile-detect.min.js",
+            ew.PATH_BASE + "js/purify.min.js",
+            ew.PATH_BASE + "jquery/load-image.all.min.js",
+            ew.PATH_BASE + "js/loading-attribute-polyfill.min.js"
+        ], "others");
+        loadjs([
+            ew.PATH_BASE + "plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.css",
+            ew.PATH_BASE + "plugins/sweetalert2/sweetalert2.all.min.js"
+        ], "swal");
+        ew.language = new ew.Language({ "addbtn": "Add", "cancelbtn": "Cancel", "changepassword": "Change Password", "clickrecaptcha": "Please click reCAPTCHA checkbox", "closebtn": "Close", "confirmbtn": "Confirm", "confirmcancel": "Do you want to cancel?", "confirmpassword": "Confirm Password", "cookieconsenttitle": "Cookies", "cookieconsentsummary": "Use this space to summarize your privacy and cookie use policy.", "countselected": "%s selected", "currentpassword": "Current password: ", "danger": "Error", "deleteconfirmmsg": "Are you sure you want to delete?", "deletefilterconfirm": "Delete filter %s?", "editbtn": "Edit", "email": "Email", "enterfiltername": "Enter filter name", "enternewpassword": "Please enter new password", "enteroldpassword": "Please enter old password", "enterpassword": "Please enter password", "enterrequiredfield": "Please enter required field - %s", "enterusername": "Please enter username", "entervalidatecode": "Please enter validation code", "enterpropersenderemail": "Exceed maximum sender email count or email address incorrect", "enterproperrecipientemail": "Exceed maximum recipient email count or email address incorrect", "enterproperccemail": "Exceed maximum cc email count or email address incorrect", "enterproperbccemail": "Exceed maximum bcc email count or email address incorrect", "entersubject": "Please enter subject", "entervalue": "Please enter value", "entervalue2": "Please enter second value", "exportchart": "Exporting chart: ", "exportchartdata": "Exporting chart data", "exportcharterror": "Failed to export chart: ", "exporting": "Exporting, please wait...", "exportingchart": "Exporting chart (%c of %t), please wait...", "exporttoemailtext": "Email", "failedtoexport": "Failed to Export", "filtername": "Filter name", "resetpassword": "Reset Password", "importmessageerror1": "Imported %c of %t records from %f (success: %s, failure: %e)", "importmessageerror2": ", error: %e", "importmessageerror3": "row %i: %d", "importmessageerror4": "log file: %l", "importmessagemore": "(%s more)", "importmessageprogress": "Importing %c of %t records from %f...", "importmessageservererror": "Server error %s: %t", "importmessagesuccess": "Imported %c of %t records from %f successfully", "importmessageuploaderror": "Failed to upload %f: %s", "importmessageuploadcomplete": "Upload completed", "importmessageuploadprogress": "Uploading...(p%)", "importmessagepleaseselect": "Please select file", "importmessageincorrectfiletype": "Incorrect file type", "importtext": "Import", "incorrectcreditcard": "Incorrect credit card number", "incorrectdate": "Incorrect date (%s)", "incorrectdateymd": "Incorrect date (yyyy%smm%sdd)", "incorrectdatemdy": "Incorrect date (mm%sdd%syyyy)", "incorrectdatedmy": "Incorrect date (dd%smm%syyyy)", "incorrectshortdateymd": "Incorrect date (yy%smm%sdd)", "incorrectshortdatemdy": "Incorrect date (mm%sdd%syy)", "incorrectshortdatedmy": "Incorrect date (dd%smm%syy)", "incorrectemail": "Incorrect email", "incorrectfield": "Incorrect field value", "incorrectfloat": "Incorrect floating point number", "incorrectguid": "Incorrect GUID", "incorrectinteger": "Incorrect integer", "incorrectphone": "Incorrect phone number", "incorrectrange": "Number must be between %1 and %2", "incorrectregexp": "Regular expression not matched", "incorrectssn": "Incorrect social security number", "incorrecttime": "Incorrect time (hh%smm(%sss))", "incorrectvalidationcode": "Incorrect validation code, please enter again.", "incorrectzip": "Incorrect ZIP code", "info": "Information", "insertfailed": "Insert failed", "invaliddate": "Invalid date", "invalidrecord": "Invalid Record! Key is null", "invalidpasswordchars": "Password must not contain &, <, >, \", or '", "invalidusernamechars": "Username must not contain &, <, >, \", or '", "lightboxtitle": " ", "lightboxcurrent": "image {current} of {total}", "lightboxprevious": "previous", "lightboxnext": "next", "lightboxclose": "close", "lightboxxhrerror": "This content failed to load.", "lightboximgerror": "This image failed to load.", "loading": "Loading...", "login": "Login", "maxfilesize": "Max. file size (%s bytes) exceeded.", "midnight": "midnight", "mismatchpassword": "Mismatch Password", "missingpdfobject": "Missing PDFObject", "more": "More", "newpassword": "New Password", "next": "Next", "noaddrecord": "No records to be added", "nofieldselected": "No field selected for update", "nochartdata": "No data to display", "norecord": "No records found", "norecordselected": "No records selected", "of": "of", "okbtn": "OK", "oldpassword": "Old Password", "overwritebtn": "Overwrite", "page": "Page", "password": "Password", "passwordstrength": "Strength: %p", "passwordtoosimple": "Your password is too simple", "permissionadd": "Add/Copy", "permissionadmin": "Admin", "permissiondelete": "Delete", "permissionedit": "Edit", "permissionimport": "Import", "permissionlistsearchview": "List/Search/View", "permissionlist": "List", "permissionlookup": "Lookup", "permissionsearch": "Search", "permissionview": "View", "pleaseselect": "Please select", "pleasewait": "Please wait...", "prev": "Prev", "quicksearchauto": "Auto", "quicksearchautoshort": "", "quicksearchall": "All keywords", "quicksearchallshort": "All", "quicksearchany": "Any keywords", "quicksearchanyshort": "Any", "quicksearchexact": "Exact match", "quicksearchexactshort": "Exact", "recipient": "Recipient(s)", "record": "Records", "recordsperpage": "Page size", "register": "Register", "reloadbtn": "Reload", "savebtn": "Save", "search": "Search", "searchbtn": "Search", "selectbtn": "Select", "sendemailsuccess": "Email sent successfully", "sender": "Sender", "sendpwd": "Send", "sessionwillexpire": "Your session will expire in %s seconds. Click OK to continue your session.", "sessionexpired": "Your session has expired.", "subject": "Subject", "success": "Success", "tableorview": "Tables", "unsupportedbrowser": "Your browser is not supported by this page", "updatebtn": "Update", "uploading": "Uploading...", "uploadstart": "Start", "uploadcancel": "Cancel", "uploaddelete": "Delete", "uploadoverwrite": "Overwrite old file?", "uploaderrmsgmaxfilesize": "File is too big", "uploaderrmsgminfilesize": "File is too small", "uploaderrmsgacceptfiletypes": "File type not allowed", "uploaderrmsgmaxnumberoffiles": "Maximum number of files exceeded", "uploaderrmsgmaxfilelength": "Total length of file names exceeds field length", "useradministrator": "Administrator", "useranonymous": "Anonymous", "userdefault": "Default", "userleveladministratorname": "User level name for user level -1 must be 'Administrator'", "userlevelanonymousname": "User level name for user level -2 must be 'Anonymous'", "userlevelidinteger": "User level ID must be integer", "userleveldefaultname": "User level name for user level 0 must be 'Default'", "userlevelidincorrect": "User defined user level ID must be larger than 0", "userlevelnameincorrect": "User defined user level name cannot be 'Anonymous', 'Administrator' or 'Default'", "username": "User Name", "valuenotexist": "Value does not exist", "warning": "Warning", "wrongfiletype": "File type is not allowed.", "am": "AM", "pm": "PM" }); ew.vars = { "languages": { "languages": [] }, "tables": { "users": { "tableCaption": "Users", "fields": { "user_id": { "caption": "user id", "visible": true, "required": true, "isInvalid": false, "raw": false }, "user_level_permission_id": { "caption": "user level permission id", "visible": true, "required": false, "isInvalid": false, "raw": false }, "_username": { "caption": "Username", "visible": true, "required": true, "isInvalid": false, "raw": false }, "_password": { "caption": "Password", "visible": true, "required": true, "isInvalid": false, "raw": false }, "nama_lengkap": { "caption": "Nama Lengkap", "visible": true, "required": false, "isInvalid": false, "raw": false }, "satker": { "caption": "Unit Kerja", "visible": true, "required": false, "isInvalid": false, "raw": false }, "nip": { "caption": "NIP", "visible": true, "required": false, "isInvalid": false, "raw": false }, "created_at": { "caption": "created at", "visible": true, "required": false, "isInvalid": false, "raw": false } } } }, "login": { "isLoggedIn": false, "currentUserName": null, "logoutUrl": "window.location='/perkasa2/logout';return false;", "logoutText": "Logout", "canLogout": false, "loginUrl": "", "loginText": "Login", "canLogin": false, "hasPersonalData": false, "personalDataUrl": "window.location='/perkasa2/personaldata';return false;", "personalDataText": "Personal Data" } };
+        ew.ready(["wrapper", "jquery"], ew.PATH_BASE + "jquery/jsrender.min.js", "jsrender", ew.renderJsTemplates);
+        ew.ready("jsrender", ew.PATH_BASE + "jquery/jquery.overlayScrollbars.min.js", "scrollbars"); // Init sidebar scrollbars after rendering menu
+        ew.ready("jquery", ew.PATH_BASE + "jquery/jquery.ui.widget.min.js", "widget");
+        ew.loadjs([
+            ew.PATH_BASE + "moment/moment.min.js",
+            ew.PATH_BASE + "js/Chart.min.js",
+            ew.PATH_BASE + "js/chartjs-plugin-annotation.min.js",
+            ew.PATH_BASE + "js/chartjs-plugin-datalabels.min.js"
+        ], "moment");
+    </script>
+    <script src="/perkasa2/jquery/jquery-3.6.0.min.js" async=""></script>
+    <script src="/perkasa2/js/mobile-detect.min.js" async=""></script>
+    <script src="/perkasa2/js/purify.min.js" async=""></script>
+    <script src="/perkasa2/jquery/load-image.all.min.js" async=""></script>
+    <script src="/perkasa2/js/loading-attribute-polyfill.min.js" async=""></script>
+    <link rel="stylesheet" href="/perkasa2/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.css">
+    <script src="/perkasa2/plugins/sweetalert2/sweetalert2.all.min.js" async=""></script>
+    <script src="/perkasa2/moment/moment.min.js" async=""></script>
+    <script>
+        ew.vars.navbar = { "items": null, "accordion": false };
+    </script>
+    <script>
+        ew.vars.menu = { "items": null, "accordion": true };
+    </script>
+    <script>
+        var cssfiles = [
+            ew.PATH_BASE + "css/Chart.min.css",
+            ew.PATH_BASE + "css/jquery.fileupload.css",
+            ew.PATH_BASE + "css/jquery.fileupload-ui.css"
+        ];
+        cssfiles.push(ew.PATH_BASE + "colorbox/colorbox.css");
+        loadjs(cssfiles, "css");
+        var cssjs = [];
+        var jqueryjs = [
+            ew.PATH_BASE + "adminlte3/js/adminlte.js",
+            ew.PATH_BASE + "bootstrap4/js/bootstrap.bundle.min.js",
+            ew.PATH_BASE + "plugins/select2/js/select2.full.min.js",
+            ew.PATH_BASE + "jquery/jqueryfileupload.min.js",
+            ew.PATH_BASE + "jquery/typeahead.jquery.min.js"
+        ];
+        jqueryjs.push(ew.PATH_BASE + "colorbox/jquery.colorbox-min.js");
+        jqueryjs.push(ew.PATH_BASE + "js/pdfobject.min.js");
+        jqueryjs.push(ew.PATH_BASE + "jquery/jquery.ewjtable.min.js");
+        ew.ready(["jquery", "widget", "scrollbars", "moment", "others"], [jqueryjs, ew.PATH_BASE + "js/ew.min.js"], "makerjs");
+        ew.ready("makerjs", [
+            cssjs,
+            ew.PATH_BASE + "js/userfn.js",
+            ew.PATH_BASE + "js/userevent.js"
+        ], "head");
+    </script>
+    <link rel="stylesheet" href="/perkasa2/css/Chart.min.css">
+    <link rel="stylesheet" href="/perkasa2/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="/perkasa2/css/jquery.fileupload-ui.css">
+    <link rel="stylesheet" href="/perkasa2/colorbox/colorbox.css">
+    <script>
+        loadjs(ew.PATH_BASE + "css/tempusdominus-bootstrap-4.css");
+        ew.ready("head", [ew.PATH_BASE + "js/tempusdominus-bootstrap-4.js", ew.PATH_BASE + "js/ewdatetimepicker.js"], "datetimepicker");
+        loadjs.ready("datetimepicker", function () {
+            var $ = jQuery;
+            $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+                icons: {
+                    time: 'far fa-clock',
+                    date: 'far fa-calendar-alt',
+                    up: 'fas fa-arrow-up',
+                    down: 'fas fa-arrow-down',
+                    previous: 'fas fa-chevron-left',
+                    next: 'fas fa-chevron-right',
+                    today: 'far fa-calendar-check',
+                    clear: 'fas fa-trash',
+                    close: 'fas fa-times'
+                }
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="/perkasa2/css/tempusdominus-bootstrap-4.css">
+    <!-- Navbar -->
+    <script type="text/html" id="navbar-menu-items" class="ew-js-template" data-name="navbar" data-seq="10"
+        data-data="navbar" data-method="appendTo" data-target="#ew-navbar" data-jsv-tmpl="jsvTmpl">
+    {{if items}}
+        {{for items}}
+            <li id="{{:id}}" name="{{:name}}" class="{{if parentId == -1}}nav-item ew-navbar-item{{/if}}{{if isHeader && parentId > -1}}dropdown-header{{/if}}{{if items}} dropdown{{/if}}{{if items && parentId != -1}} dropdown-submenu{{/if}}{{if items && level == 1}} dropdown-hover{{/if}} d-none d-md-block">
+                {{if isHeader && parentId > -1}}
+                    {{if icon}}<i class="{{:icon}}"></i>{{/if}}
+                    <span>{{:text}}</span>
+                {{else}}
+                <a href="{{:href}}"{{if target}} target="{{:target}}"{{/if}}{{if attrs}}{{:attrs}}{{/if}} class="{{if parentId == -1}}nav-link{{else}}dropdown-item{{/if}}{{if active}} active{{/if}}{{if items}} dropdown-toggle ew-dropdown{{/if}}"{{if items}} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{{/if}}>
+                    {{if icon}}<i class="{{:icon}}"></i>{{/if}}
+                    <span>{{:text}}</span>
+                </a>
+                {{/if}}
+                {{if items}}
+                <ul class="dropdown-menu">
+                    {{include tmpl="#navbar-menu-items"/}}
+                </ul>
+                {{/if}}
+            </li>
+        {{/for}}
+    {{/if}}
+    </script>
+    <!-- Sidebar -->
+    <script type="text/html" class="ew-js-template" data-name="menu" data-seq="10" data-data="menu"
+        data-target="#ew-menu" data-jsv-tmpl="jsvTmpl">
+    {{if items}}
+        <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="{{:accordion}}">
+        {{include tmpl="#menu-items"/}}
+        </ul>
+    {{/if}}
+    </script>
+    <script type="text/html" id="menu-items">
+    {{if items}}
+        {{for items}}
+            <li id="{{:id}}" name="{{:name}}" class="{{if isHeader}}nav-header{{else}}nav-item{{if items}} has-treeview{{/if}}{{if active}} active current{{/if}}{{if open}} menu-open{{/if}}{{/if}}{{if isNavbarItem}} d-block d-md-none{{/if}}">
+                {{if isHeader}}
+                    {{if icon}}<i class="{{:icon}}"></i>{{/if}}
+                    <span>{{:text}}</span>
+                    {{if label}}
+                    <span class="right">
+                        {{:label}}
+                    </span>
+                    {{/if}}
+                {{else}}
+                <a href="{{:href}}" class="nav-link{{if active}} active{{/if}}"{{if target}} target="{{:target}}"{{/if}}{{if attrs}}{{:attrs}}{{/if}}>
+                    {{if icon}}<i class="nav-icon {{:icon}}"></i>{{/if}}
+                    <p>{{:text}}
+                        {{if items}}
+                            <i class="right fas fa-angle-left"></i>
+                            {{if label}}
+                                <span class="right">
+                                    {{:label}}
+                                </span>
+                            {{/if}}
+                        {{else}}
+                            {{if label}}
+                                <span class="right">
+                                    {{:label}}
+                                </span>
+                            {{/if}}
+                        {{/if}}
+                    </p>
+                </a>
+                {{/if}}
+                {{if items}}
+                <ul class="nav nav-treeview"{{if open}} style="display: block;"{{/if}}>
+                    {{include tmpl="#menu-items"/}}
+                </ul>
+                {{/if}}
+            </li>
+        {{/for}}
+    {{/if}}
+    </script>
+    <script type="text/html" class="ew-js-template" data-name="languages" data-seq="10" data-data="languages"
+        data-method="prependTo" data-target=".navbar-nav.ml-auto" data-jsv-tmpl="jsvTmpl">
+    {{for languages}}<li class="nav-item"><a href="#" class="nav-link{{if selected}} active{{/if}} ew-tooltip" title="{{>desc}}" onclick="ew.setLanguage(this);" data-language="{{:id}}">{{:id}}</a></li>{{/for}}</script>
+    <script type="text/html" class="ew-js-template" data-name="login" data-seq="10" data-data="login"
+        data-method="appendTo" data-target=".navbar-nav.ml-auto" data-jsv-tmpl="jsvTmpl">
+    {{if isLoggedIn}}
+    <li class="nav-item dropdown text-body">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <div class="dropdown-item p-3"><i class="fas fa-user mr-2"></i>{{:currentUserName}}</div>
+            {{if (hasPersonalData || canChangePassword)}}
+            <div class="dropdown-divider"></div>
+            <div class="text-nowrap p-3">
+                {{if hasPersonalData}}
+                <a class="btn btn-default" href="#" onclick="{{:personalDataUrl}}">{{:personalDataText}}</a>
+                {{/if}}
+                {{if canChangePassword}}
+                <a class="btn btn-default" href="#" onclick="{{:changePasswordUrl}}">{{:changePasswordText}}</a>
+                {{/if}}
+            </div>
+            {{/if}}
+            {{if canLogout}}
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-footer p-2 text-right">
+                <a class="btn btn-default" href="#" onclick="{{:logoutUrl}}">{{:logoutText}}</a>
+            </div>
+            {{/if}}
+        </div>
+    <li>
+    {{else}}
+        {{if canLogin}}
+    <li class="nav-item"><a class="nav-link" href="#" onclick="{{:loginUrl}}">{{:loginText}}</a></li>
+        {{/if}}
+    {{/if}}
+    </script>
+    <meta name="generator" content="PHPMaker 2021.0.15">
+    <script src="/perkasa2/jquery/jsrender.min.js" async=""></script>
+    <script src="/perkasa2/jquery/jquery.ui.widget.min.js" async=""></script>
+    <script src="/perkasa2/js/Chart.min.js" async=""></script>
+    <style>
+        .swal2-popup.swal2-toast {
+            flex-direction: column;
+            align-items: stretch;
+            width: auto;
+            padding: 1.25em;
+            overflow-y: hidden;
+            background: #fff;
+            box-shadow: 0 0 .625em #d9d9d9
+        }
+
+        .swal2-popup.swal2-toast .swal2-header {
+            flex-direction: row;
+            padding: 0
+        }
+
+        .swal2-popup.swal2-toast .swal2-title {
+            flex-grow: 1;
+            justify-content: flex-start;
+            margin: 0 .625em;
+            font-size: 1em
+        }
+
+        .swal2-popup.swal2-toast .swal2-loading {
+            justify-content: center
+        }
+
+        .swal2-popup.swal2-toast .swal2-input {
+            height: 2em;
+            margin: .3125em auto;
+            font-size: 1em
+        }
+
+        .swal2-popup.swal2-toast .swal2-validation-message {
+            font-size: 1em
+        }
+
+        .swal2-popup.swal2-toast .swal2-footer {
+            margin: .5em 0 0;
+            padding: .5em 0 0;
+            font-size: .8em
+        }
+
+        .swal2-popup.swal2-toast .swal2-close {
+            position: static;
+            width: .8em;
+            height: .8em;
+            line-height: .8
+        }
+
+        .swal2-popup.swal2-toast .swal2-content {
+            justify-content: flex-start;
+            margin: 0 .625em;
+            padding: 0;
+            font-size: 1em;
+            text-align: initial
+        }
+
+        .swal2-popup.swal2-toast .swal2-html-container {
+            padding: .625em 0 0
+        }
+
+        .swal2-popup.swal2-toast .swal2-html-container:empty {
+            padding: 0
+        }
+
+        .swal2-popup.swal2-toast .swal2-icon {
+            width: 2em;
+            min-width: 2em;
+            height: 2em;
+            margin: 0 .5em 0 0
+        }
+
+        .swal2-popup.swal2-toast .swal2-icon .swal2-icon-content {
+            display: flex;
+            align-items: center;
+            font-size: 1.8em;
+            font-weight: 700
+        }
+
+        @media all and (-ms-high-contrast:none),
+        (-ms-high-contrast:active) {
+            .swal2-popup.swal2-toast .swal2-icon .swal2-icon-content {
+                font-size: .25em
+            }
+        }
+
+        .swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring {
+            width: 2em;
+            height: 2em
+        }
+
+        .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+            top: .875em;
+            width: 1.375em
+        }
+
+        .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left] {
+            left: .3125em
+        }
+
+        .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right] {
+            right: .3125em
+        }
+
+        .swal2-popup.swal2-toast .swal2-actions {
+            flex: 1;
+            flex-basis: auto !important;
+            align-self: stretch;
+            width: auto;
+            height: 2.2em;
+            height: auto;
+            margin: 0 .3125em;
+            margin-top: .3125em;
+            padding: 0
+        }
+
+        .swal2-popup.swal2-toast .swal2-styled {
+            margin: .125em .3125em;
+            padding: .3125em .625em;
+            font-size: 1em
+        }
+
+        .swal2-popup.swal2-toast .swal2-styled:focus {
+            box-shadow: 0 0 0 1px #fff, 0 0 0 3px rgba(100, 150, 200, .5)
+        }
+
+        .swal2-popup.swal2-toast .swal2-success {
+            border-color: #a5dc86
+        }
+
+        .swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line] {
+            position: absolute;
+            width: 1.6em;
+            height: 3em;
+            transform: rotate(45deg);
+            border-radius: 50%
+        }
+
+        .swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left] {
+            top: -.8em;
+            left: -.5em;
+            transform: rotate(-45deg);
+            transform-origin: 2em 2em;
+            border-radius: 4em 0 0 4em
+        }
+
+        .swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right] {
+            top: -.25em;
+            left: .9375em;
+            transform-origin: 0 1.5em;
+            border-radius: 0 4em 4em 0
+        }
+
+        .swal2-popup.swal2-toast .swal2-success .swal2-success-ring {
+            width: 2em;
+            height: 2em
+        }
+
+        .swal2-popup.swal2-toast .swal2-success .swal2-success-fix {
+            top: 0;
+            left: .4375em;
+            width: .4375em;
+            height: 2.6875em
+        }
+
+        .swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line] {
+            height: .3125em
+        }
+
+        .swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip] {
+            top: 1.125em;
+            left: .1875em;
+            width: .75em
+        }
+
+        .swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long] {
+            top: .9375em;
+            right: .1875em;
+            width: 1.375em
+        }
+
+        .swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip {
+            -webkit-animation: swal2-toast-animate-success-line-tip .75s;
+            animation: swal2-toast-animate-success-line-tip .75s
+        }
+
+        .swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long {
+            -webkit-animation: swal2-toast-animate-success-line-long .75s;
+            animation: swal2-toast-animate-success-line-long .75s
+        }
+
+        .swal2-popup.swal2-toast.swal2-show {
+            -webkit-animation: swal2-toast-show .5s;
+            animation: swal2-toast-show .5s
+        }
+
+        .swal2-popup.swal2-toast.swal2-hide {
+            -webkit-animation: swal2-toast-hide .1s forwards;
+            animation: swal2-toast-hide .1s forwards
+        }
+
+        .swal2-container {
+            display: flex;
+            position: fixed;
+            z-index: 1060;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: .625em;
+            overflow-x: hidden;
+            transition: background-color .1s;
+            -webkit-overflow-scrolling: touch
+        }
+
+        .swal2-container.swal2-backdrop-show,
+        .swal2-container.swal2-noanimation {
+            background: rgba(0, 0, 0, .4)
+        }
+
+        .swal2-container.swal2-backdrop-hide {
+            background: 0 0 !important
+        }
+
+        .swal2-container.swal2-top {
+            align-items: flex-start
+        }
+
+        .swal2-container.swal2-top-left,
+        .swal2-container.swal2-top-start {
+            align-items: flex-start;
+            justify-content: flex-start
+        }
+
+        .swal2-container.swal2-top-end,
+        .swal2-container.swal2-top-right {
+            align-items: flex-start;
+            justify-content: flex-end
+        }
+
+        .swal2-container.swal2-center {
+            align-items: center
+        }
+
+        .swal2-container.swal2-center-left,
+        .swal2-container.swal2-center-start {
+            align-items: center;
+            justify-content: flex-start
+        }
+
+        .swal2-container.swal2-center-end,
+        .swal2-container.swal2-center-right {
+            align-items: center;
+            justify-content: flex-end
+        }
+
+        .swal2-container.swal2-bottom {
+            align-items: flex-end
+        }
+
+        .swal2-container.swal2-bottom-left,
+        .swal2-container.swal2-bottom-start {
+            align-items: flex-end;
+            justify-content: flex-start
+        }
+
+        .swal2-container.swal2-bottom-end,
+        .swal2-container.swal2-bottom-right {
+            align-items: flex-end;
+            justify-content: flex-end
+        }
+
+        .swal2-container.swal2-bottom-end>:first-child,
+        .swal2-container.swal2-bottom-left>:first-child,
+        .swal2-container.swal2-bottom-right>:first-child,
+        .swal2-container.swal2-bottom-start>:first-child,
+        .swal2-container.swal2-bottom>:first-child {
+            margin-top: auto
+        }
+
+        .swal2-container.swal2-grow-fullscreen>.swal2-modal {
+            display: flex !important;
+            flex: 1;
+            align-self: stretch;
+            justify-content: center
+        }
+
+        .swal2-container.swal2-grow-row>.swal2-modal {
+            display: flex !important;
+            flex: 1;
+            align-content: center;
+            justify-content: center
+        }
+
+        .swal2-container.swal2-grow-column {
+            flex: 1;
+            flex-direction: column
+        }
+
+        .swal2-container.swal2-grow-column.swal2-bottom,
+        .swal2-container.swal2-grow-column.swal2-center,
+        .swal2-container.swal2-grow-column.swal2-top {
+            align-items: center
+        }
+
+        .swal2-container.swal2-grow-column.swal2-bottom-left,
+        .swal2-container.swal2-grow-column.swal2-bottom-start,
+        .swal2-container.swal2-grow-column.swal2-center-left,
+        .swal2-container.swal2-grow-column.swal2-center-start,
+        .swal2-container.swal2-grow-column.swal2-top-left,
+        .swal2-container.swal2-grow-column.swal2-top-start {
+            align-items: flex-start
+        }
+
+        .swal2-container.swal2-grow-column.swal2-bottom-end,
+        .swal2-container.swal2-grow-column.swal2-bottom-right,
+        .swal2-container.swal2-grow-column.swal2-center-end,
+        .swal2-container.swal2-grow-column.swal2-center-right,
+        .swal2-container.swal2-grow-column.swal2-top-end,
+        .swal2-container.swal2-grow-column.swal2-top-right {
+            align-items: flex-end
+        }
+
+        .swal2-container.swal2-grow-column>.swal2-modal {
+            display: flex !important;
+            flex: 1;
+            align-content: center;
+            justify-content: center
+        }
+
+        .swal2-container.swal2-no-transition {
+            transition: none !important
+        }
+
+        .swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal {
+            margin: auto
+        }
+
+        @media all and (-ms-high-contrast:none),
+        (-ms-high-contrast:active) {
+            .swal2-container .swal2-modal {
+                margin: 0 !important
+            }
+        }
+
+        .swal2-popup {
+            display: none;
+            position: relative;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: center;
+            width: 32em;
+            max-width: 100%;
+            padding: 1.25em;
+            border: none;
+            border-radius: 5px;
+            background: #fff;
+            font-family: inherit;
+            font-size: 1rem
+        }
+
+        .swal2-popup:focus {
+            outline: 0
+        }
+
+        .swal2-popup.swal2-loading {
+            overflow-y: hidden
+        }
+
+        .swal2-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 1.8em
+        }
+
+        .swal2-title {
+            position: relative;
+            max-width: 100%;
+            margin: 0 0 .4em;
+            padding: 0;
+            color: #595959;
+            font-size: 1.875em;
+            font-weight: 600;
+            text-align: center;
+            text-transform: none;
+            word-wrap: break-word
+        }
+
+        .swal2-actions {
+            display: flex;
+            z-index: 1;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 1.25em auto 0;
+            padding: 0
+        }
+
+        .swal2-actions:not(.swal2-loading) .swal2-styled[disabled] {
+            opacity: .4
+        }
+
+        .swal2-actions:not(.swal2-loading) .swal2-styled:hover {
+            background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1))
+        }
+
+        .swal2-actions:not(.swal2-loading) .swal2-styled:active {
+            background-image: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2))
+        }
+
+        .swal2-loader {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2.2em;
+            height: 2.2em;
+            margin: 0 1.875em;
+            -webkit-animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
+            animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
+            border-width: .25em;
+            border-style: solid;
+            border-radius: 100%;
+            border-color: #2778c4 transparent #2778c4 transparent
+        }
+
+        .swal2-styled {
+            margin: .3125em;
+            padding: .625em 1.1em;
+            box-shadow: none;
+            font-weight: 500
+        }
+
+        .swal2-styled:not([disabled]) {
+            cursor: pointer
+        }
+
+        .swal2-styled.swal2-confirm {
+            border: 0;
+            border-radius: .25em;
+            background: initial;
+            background-color: #2778c4;
+            color: #fff;
+            font-size: 1em
+        }
+
+        .swal2-styled.swal2-deny {
+            border: 0;
+            border-radius: .25em;
+            background: initial;
+            background-color: #d14529;
+            color: #fff;
+            font-size: 1em
+        }
+
+        .swal2-styled.swal2-cancel {
+            border: 0;
+            border-radius: .25em;
+            background: initial;
+            background-color: #757575;
+            color: #fff;
+            font-size: 1em
+        }
+
+        .swal2-styled:focus {
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(100, 150, 200, .5)
+        }
+
+        .swal2-styled::-moz-focus-inner {
+            border: 0
+        }
+
+        .swal2-footer {
+            justify-content: center;
+            margin: 1.25em 0 0;
+            padding: 1em 0 0;
+            border-top: 1px solid #eee;
+            color: #545454;
+            font-size: 1em
+        }
+
+        .swal2-timer-progress-bar-container {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: .25em;
+            overflow: hidden;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px
+        }
+
+        .swal2-timer-progress-bar {
+            width: 100%;
+            height: .25em;
+            background: rgba(0, 0, 0, .2)
+        }
+
+        .swal2-image {
+            max-width: 100%;
+            margin: 1.25em auto
+        }
+
+        .swal2-close {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            right: 0;
+            align-items: center;
+            justify-content: center;
+            width: 1.2em;
+            height: 1.2em;
+            padding: 0;
+            overflow: hidden;
+            transition: color .1s ease-out;
+            border: none;
+            border-radius: 5px;
+            background: 0 0;
+            color: #ccc;
+            font-family: serif;
+            font-size: 2.5em;
+            line-height: 1.2;
+            cursor: pointer
+        }
+
+        .swal2-close:hover {
+            transform: none;
+            background: 0 0;
+            color: #f27474
+        }
+
+        .swal2-close:focus {
+            outline: 0;
+            box-shadow: inset 0 0 0 3px rgba(100, 150, 200, .5)
+        }
+
+        .swal2-close::-moz-focus-inner {
+            border: 0
+        }
+
+        .swal2-content {
+            z-index: 1;
+            justify-content: center;
+            margin: 0;
+            padding: 0 1.6em;
+            color: #545454;
+            font-size: 1.125em;
+            font-weight: 400;
+            line-height: normal;
+            text-align: center;
+            word-wrap: break-word
+        }
+
+        .swal2-checkbox,
+        .swal2-file,
+        .swal2-input,
+        .swal2-radio,
+        .swal2-select,
+        .swal2-textarea {
+            margin: 1em auto
+        }
+
+        .swal2-file,
+        .swal2-input,
+        .swal2-textarea {
+            box-sizing: border-box;
+            width: 100%;
+            transition: border-color .3s, box-shadow .3s;
+            border: 1px solid #d9d9d9;
+            border-radius: .1875em;
+            background: inherit;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .06);
+            color: inherit;
+            font-size: 1.125em
+        }
+
+        .swal2-file.swal2-inputerror,
+        .swal2-input.swal2-inputerror,
+        .swal2-textarea.swal2-inputerror {
+            border-color: #f27474 !important;
+            box-shadow: 0 0 2px #f27474 !important
+        }
+
+        .swal2-file:focus,
+        .swal2-input:focus,
+        .swal2-textarea:focus {
+            border: 1px solid #b4dbed;
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(100, 150, 200, .5)
+        }
+
+        .swal2-file::-moz-placeholder,
+        .swal2-input::-moz-placeholder,
+        .swal2-textarea::-moz-placeholder {
+            color: #ccc
+        }
+
+        .swal2-file:-ms-input-placeholder,
+        .swal2-input:-ms-input-placeholder,
+        .swal2-textarea:-ms-input-placeholder {
+            color: #ccc
+        }
+
+        .swal2-file::placeholder,
+        .swal2-input::placeholder,
+        .swal2-textarea::placeholder {
+            color: #ccc
+        }
+
+        .swal2-range {
+            margin: 1em auto;
+            background: #fff
+        }
+
+        .swal2-range input {
+            width: 80%
+        }
+
+        .swal2-range output {
+            width: 20%;
+            color: inherit;
+            font-weight: 600;
+            text-align: center
+        }
+
+        .swal2-range input,
+        .swal2-range output {
+            height: 2.625em;
+            padding: 0;
+            font-size: 1.125em;
+            line-height: 2.625em
+        }
+
+        .swal2-input {
+            height: 2.625em;
+            padding: 0 .75em
+        }
+
+        .swal2-input[type=number] {
+            max-width: 10em
+        }
+
+        .swal2-file {
+            background: inherit;
+            font-size: 1.125em
+        }
+
+        .swal2-textarea {
+            height: 6.75em;
+            padding: .75em
+        }
+
+        .swal2-select {
+            min-width: 50%;
+            max-width: 100%;
+            padding: .375em .625em;
+            background: inherit;
+            color: inherit;
+            font-size: 1.125em
+        }
+
+        .swal2-checkbox,
+        .swal2-radio {
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: inherit
+        }
+
+        .swal2-checkbox label,
+        .swal2-radio label {
+            margin: 0 .6em;
+            font-size: 1.125em
+        }
+
+        .swal2-checkbox input,
+        .swal2-radio input {
+            flex-shrink: 0;
+            margin: 0 .4em
+        }
+
+        .swal2-input-label {
+            display: flex;
+            justify-content: center;
+            margin: 1em auto
+        }
+
+        .swal2-validation-message {
+            align-items: center;
+            justify-content: center;
+            margin: 0 -2.7em;
+            padding: .625em;
+            overflow: hidden;
+            background: #f0f0f0;
+            color: #666;
+            font-size: 1em;
+            font-weight: 300
+        }
+
+        .swal2-validation-message::before {
+            content: "!";
+            display: inline-block;
+            width: 1.5em;
+            min-width: 1.5em;
+            height: 1.5em;
+            margin: 0 .625em;
+            border-radius: 50%;
+            background-color: #f27474;
+            color: #fff;
+            font-weight: 600;
+            line-height: 1.5em;
+            text-align: center
+        }
+
+        .swal2-icon {
+            position: relative;
+            box-sizing: content-box;
+            justify-content: center;
+            width: 5em;
+            height: 5em;
+            margin: 1.25em auto 1.875em;
+            border: .25em solid transparent;
+            border-radius: 50%;
+            border-color: #000;
+            font-family: inherit;
+            line-height: 5em;
+            cursor: default;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .swal2-icon .swal2-icon-content {
+            display: flex;
+            align-items: center;
+            font-size: 3.75em
+        }
+
+        .swal2-icon.swal2-error {
+            border-color: #f27474;
+            color: #f27474
+        }
+
+        .swal2-icon.swal2-error .swal2-x-mark {
+            position: relative;
+            flex-grow: 1
+        }
+
+        .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+            display: block;
+            position: absolute;
+            top: 2.3125em;
+            width: 2.9375em;
+            height: .3125em;
+            border-radius: .125em;
+            background-color: #f27474
+        }
+
+        .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left] {
+            left: 1.0625em;
+            transform: rotate(45deg)
+        }
+
+        .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right] {
+            right: 1em;
+            transform: rotate(-45deg)
+        }
+
+        .swal2-icon.swal2-error.swal2-icon-show {
+            -webkit-animation: swal2-animate-error-icon .5s;
+            animation: swal2-animate-error-icon .5s
+        }
+
+        .swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark {
+            -webkit-animation: swal2-animate-error-x-mark .5s;
+            animation: swal2-animate-error-x-mark .5s
+        }
+
+        .swal2-icon.swal2-warning {
+            border-color: #facea8;
+            color: #f8bb86
+        }
+
+        .swal2-icon.swal2-info {
+            border-color: #9de0f6;
+            color: #3fc3ee
+        }
+
+        .swal2-icon.swal2-question {
+            border-color: #c9dae1;
+            color: #87adbd
+        }
+
+        .swal2-icon.swal2-success {
+            border-color: #a5dc86;
+            color: #a5dc86
+        }
+
+        .swal2-icon.swal2-success [class^=swal2-success-circular-line] {
+            position: absolute;
+            width: 3.75em;
+            height: 7.5em;
+            transform: rotate(45deg);
+            border-radius: 50%
+        }
+
+        .swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left] {
+            top: -.4375em;
+            left: -2.0635em;
+            transform: rotate(-45deg);
+            transform-origin: 3.75em 3.75em;
+            border-radius: 7.5em 0 0 7.5em
+        }
+
+        .swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right] {
+            top: -.6875em;
+            left: 1.875em;
+            transform: rotate(-45deg);
+            transform-origin: 0 3.75em;
+            border-radius: 0 7.5em 7.5em 0
+        }
+
+        .swal2-icon.swal2-success .swal2-success-ring {
+            position: absolute;
+            z-index: 2;
+            top: -.25em;
+            left: -.25em;
+            box-sizing: content-box;
+            width: 100%;
+            height: 100%;
+            border: .25em solid rgba(165, 220, 134, .3);
+            border-radius: 50%
+        }
+
+        .swal2-icon.swal2-success .swal2-success-fix {
+            position: absolute;
+            z-index: 1;
+            top: .5em;
+            left: 1.625em;
+            width: .4375em;
+            height: 5.625em;
+            transform: rotate(-45deg)
+        }
+
+        .swal2-icon.swal2-success [class^=swal2-success-line] {
+            display: block;
+            position: absolute;
+            z-index: 2;
+            height: .3125em;
+            border-radius: .125em;
+            background-color: #a5dc86
+        }
+
+        .swal2-icon.swal2-success [class^=swal2-success-line][class$=tip] {
+            top: 2.875em;
+            left: .8125em;
+            width: 1.5625em;
+            transform: rotate(45deg)
+        }
+
+        .swal2-icon.swal2-success [class^=swal2-success-line][class$=long] {
+            top: 2.375em;
+            right: .5em;
+            width: 2.9375em;
+            transform: rotate(-45deg)
+        }
+
+        .swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip {
+            -webkit-animation: swal2-animate-success-line-tip .75s;
+            animation: swal2-animate-success-line-tip .75s
+        }
+
+        .swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long {
+            -webkit-animation: swal2-animate-success-line-long .75s;
+            animation: swal2-animate-success-line-long .75s
+        }
+
+        .swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right {
+            -webkit-animation: swal2-rotate-success-circular-line 4.25s ease-in;
+            animation: swal2-rotate-success-circular-line 4.25s ease-in
+        }
+
+        .swal2-progress-steps {
+            flex-wrap: wrap;
+            align-items: center;
+            max-width: 100%;
+            margin: 0 0 1.25em;
+            padding: 0;
+            background: inherit;
+            font-weight: 600
+        }
+
+        .swal2-progress-steps li {
+            display: inline-block;
+            position: relative
+        }
+
+        .swal2-progress-steps .swal2-progress-step {
+            z-index: 20;
+            flex-shrink: 0;
+            width: 2em;
+            height: 2em;
+            border-radius: 2em;
+            background: #2778c4;
+            color: #fff;
+            line-height: 2em;
+            text-align: center
+        }
+
+        .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step {
+            background: #2778c4
+        }
+
+        .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step {
+            background: #add8e6;
+            color: #fff
+        }
+
+        .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line {
+            background: #add8e6
+        }
+
+        .swal2-progress-steps .swal2-progress-step-line {
+            z-index: 10;
+            flex-shrink: 0;
+            width: 2.5em;
+            height: .4em;
+            margin: 0 -1px;
+            background: #2778c4
+        }
+
+        [class^=swal2] {
+            -webkit-tap-highlight-color: transparent
+        }
+
+        .swal2-show {
+            -webkit-animation: swal2-show .3s;
+            animation: swal2-show .3s
+        }
+
+        .swal2-hide {
+            -webkit-animation: swal2-hide .15s forwards;
+            animation: swal2-hide .15s forwards
+        }
+
+        .swal2-noanimation {
+            transition: none
+        }
+
+        .swal2-scrollbar-measure {
+            position: absolute;
+            top: -9999px;
+            width: 50px;
+            height: 50px;
+            overflow: scroll
+        }
+
+        .swal2-rtl .swal2-close {
+            right: auto;
+            left: 0
+        }
+
+        .swal2-rtl .swal2-timer-progress-bar {
+            right: 0;
+            left: auto
+        }
+
+        @supports (-ms-accelerator:true) {
+            .swal2-range input {
+                width: 100% !important
+            }
+
+            .swal2-range output {
+                display: none
+            }
+        }
+
+        @media all and (-ms-high-contrast:none),
+        (-ms-high-contrast:active) {
+            .swal2-range input {
+                width: 100% !important
+            }
+
+            .swal2-range output {
+                display: none
+            }
+        }
+
+        @-webkit-keyframes swal2-toast-show {
+            0% {
+                transform: translateY(-.625em) rotateZ(2deg)
+            }
+
+            33% {
+                transform: translateY(0) rotateZ(-2deg)
+            }
+
+            66% {
+                transform: translateY(.3125em) rotateZ(2deg)
+            }
+
+            100% {
+                transform: translateY(0) rotateZ(0)
+            }
+        }
+
+        @keyframes swal2-toast-show {
+            0% {
+                transform: translateY(-.625em) rotateZ(2deg)
+            }
+
+            33% {
+                transform: translateY(0) rotateZ(-2deg)
+            }
+
+            66% {
+                transform: translateY(.3125em) rotateZ(2deg)
+            }
+
+            100% {
+                transform: translateY(0) rotateZ(0)
+            }
+        }
+
+        @-webkit-keyframes swal2-toast-hide {
+            100% {
+                transform: rotateZ(1deg);
+                opacity: 0
+            }
+        }
+
+        @keyframes swal2-toast-hide {
+            100% {
+                transform: rotateZ(1deg);
+                opacity: 0
+            }
+        }
+
+        @-webkit-keyframes swal2-toast-animate-success-line-tip {
+            0% {
+                top: .5625em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: .125em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: .625em;
+                left: -.25em;
+                width: 1.625em
+            }
+
+            84% {
+                top: 1.0625em;
+                left: .75em;
+                width: .5em
+            }
+
+            100% {
+                top: 1.125em;
+                left: .1875em;
+                width: .75em
+            }
+        }
+
+        @keyframes swal2-toast-animate-success-line-tip {
+            0% {
+                top: .5625em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: .125em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: .625em;
+                left: -.25em;
+                width: 1.625em
+            }
+
+            84% {
+                top: 1.0625em;
+                left: .75em;
+                width: .5em
+            }
+
+            100% {
+                top: 1.125em;
+                left: .1875em;
+                width: .75em
+            }
+        }
+
+        @-webkit-keyframes swal2-toast-animate-success-line-long {
+            0% {
+                top: 1.625em;
+                right: 1.375em;
+                width: 0
+            }
+
+            65% {
+                top: 1.25em;
+                right: .9375em;
+                width: 0
+            }
+
+            84% {
+                top: .9375em;
+                right: 0;
+                width: 1.125em
+            }
+
+            100% {
+                top: .9375em;
+                right: .1875em;
+                width: 1.375em
+            }
+        }
+
+        @keyframes swal2-toast-animate-success-line-long {
+            0% {
+                top: 1.625em;
+                right: 1.375em;
+                width: 0
+            }
+
+            65% {
+                top: 1.25em;
+                right: .9375em;
+                width: 0
+            }
+
+            84% {
+                top: .9375em;
+                right: 0;
+                width: 1.125em
+            }
+
+            100% {
+                top: .9375em;
+                right: .1875em;
+                width: 1.375em
+            }
+        }
+
+        @-webkit-keyframes swal2-show {
+            0% {
+                transform: scale(.7)
+            }
+
+            45% {
+                transform: scale(1.05)
+            }
+
+            80% {
+                transform: scale(.95)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        @keyframes swal2-show {
+            0% {
+                transform: scale(.7)
+            }
+
+            45% {
+                transform: scale(1.05)
+            }
+
+            80% {
+                transform: scale(.95)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        @-webkit-keyframes swal2-hide {
+            0% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            100% {
+                transform: scale(.5);
+                opacity: 0
+            }
+        }
+
+        @keyframes swal2-hide {
+            0% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            100% {
+                transform: scale(.5);
+                opacity: 0
+            }
+        }
+
+        @-webkit-keyframes swal2-animate-success-line-tip {
+            0% {
+                top: 1.1875em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: 1.0625em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: 2.1875em;
+                left: -.375em;
+                width: 3.125em
+            }
+
+            84% {
+                top: 3em;
+                left: 1.3125em;
+                width: 1.0625em
+            }
+
+            100% {
+                top: 2.8125em;
+                left: .8125em;
+                width: 1.5625em
+            }
+        }
+
+        @keyframes swal2-animate-success-line-tip {
+            0% {
+                top: 1.1875em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: 1.0625em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: 2.1875em;
+                left: -.375em;
+                width: 3.125em
+            }
+
+            84% {
+                top: 3em;
+                left: 1.3125em;
+                width: 1.0625em
+            }
+
+            100% {
+                top: 2.8125em;
+                left: .8125em;
+                width: 1.5625em
+            }
+        }
+
+        @-webkit-keyframes swal2-animate-success-line-long {
+            0% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            65% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            84% {
+                top: 2.1875em;
+                right: 0;
+                width: 3.4375em
+            }
+
+            100% {
+                top: 2.375em;
+                right: .5em;
+                width: 2.9375em
+            }
+        }
+
+        @keyframes swal2-animate-success-line-long {
+            0% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            65% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            84% {
+                top: 2.1875em;
+                right: 0;
+                width: 3.4375em
+            }
+
+            100% {
+                top: 2.375em;
+                right: .5em;
+                width: 2.9375em
+            }
+        }
+
+        @-webkit-keyframes swal2-rotate-success-circular-line {
+            0% {
+                transform: rotate(-45deg)
+            }
+
+            5% {
+                transform: rotate(-45deg)
+            }
+
+            12% {
+                transform: rotate(-405deg)
+            }
+
+            100% {
+                transform: rotate(-405deg)
+            }
+        }
+
+        @keyframes swal2-rotate-success-circular-line {
+            0% {
+                transform: rotate(-45deg)
+            }
+
+            5% {
+                transform: rotate(-45deg)
+            }
+
+            12% {
+                transform: rotate(-405deg)
+            }
+
+            100% {
+                transform: rotate(-405deg)
+            }
+        }
+
+        @-webkit-keyframes swal2-animate-error-x-mark {
+            0% {
+                margin-top: 1.625em;
+                transform: scale(.4);
+                opacity: 0
+            }
+
+            50% {
+                margin-top: 1.625em;
+                transform: scale(.4);
+                opacity: 0
+            }
+
+            80% {
+                margin-top: -.375em;
+                transform: scale(1.15)
+            }
+
+            100% {
+                margin-top: 0;
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-animate-error-x-mark {
+            0% {
+                margin-top: 1.625em;
+                transform: scale(.4);
+                opacity: 0
+            }
+
+            50% {
+                margin-top: 1.625em;
+                transform: scale(.4);
+                opacity: 0
+            }
+
+            80% {
+                margin-top: -.375em;
+                transform: scale(1.15)
+            }
+
+            100% {
+                margin-top: 0;
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes swal2-animate-error-icon {
+            0% {
+                transform: rotateX(100deg);
+                opacity: 0
+            }
+
+            100% {
+                transform: rotateX(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-animate-error-icon {
+            0% {
+                transform: rotateX(100deg);
+                opacity: 0
+            }
+
+            100% {
+                transform: rotateX(0);
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes swal2-rotate-loading {
+            0% {
+                transform: rotate(0)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes swal2-rotate-loading {
+            0% {
+                transform: rotate(0)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+            overflow: hidden
+        }
+
+        body.swal2-height-auto {
+            height: auto !important
+        }
+
+        body.swal2-no-backdrop .swal2-container {
+            top: auto;
+            right: auto;
+            bottom: auto;
+            left: auto;
+            max-width: calc(100% - .625em * 2);
+            background-color: transparent !important
+        }
+
+        body.swal2-no-backdrop .swal2-container>.swal2-modal {
+            box-shadow: 0 0 10px rgba(0, 0, 0, .4)
+        }
+
+        body.swal2-no-backdrop .swal2-container.swal2-top {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-no-backdrop .swal2-container.swal2-top-left,
+        body.swal2-no-backdrop .swal2-container.swal2-top-start {
+            top: 0;
+            left: 0
+        }
+
+        body.swal2-no-backdrop .swal2-container.swal2-top-end,
+        body.swal2-no-backdrop .swal2-container.swal2-top-right {
+            top: 0;
+            right: 0
+        }
+
+        body.swal2-no-backdrop .swal2-container.swal2-center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        body.swal2-no-backdrop .swal2-container.swal2-center-left,
+        body.swal2-no-backdrop .swal2-container.swal2-center-start {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-no-backdrop .swal2-container.swal2-center-end,
+        body.swal2-no-backdrop .swal2-container.swal2-center-right {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-no-backdrop .swal2-container.swal2-bottom {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-no-backdrop .swal2-container.swal2-bottom-left,
+        body.swal2-no-backdrop .swal2-container.swal2-bottom-start {
+            bottom: 0;
+            left: 0
+        }
+
+        body.swal2-no-backdrop .swal2-container.swal2-bottom-end,
+        body.swal2-no-backdrop .swal2-container.swal2-bottom-right {
+            right: 0;
+            bottom: 0
+        }
+
+        @media print {
+            body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+                overflow-y: scroll !important
+            }
+
+            body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true] {
+                display: none
+            }
+
+            body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container {
+                position: static !important
+            }
+        }
+
+        body.swal2-toast-shown .swal2-container {
+            background-color: transparent
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top {
+            top: 0;
+            right: auto;
+            bottom: auto;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top-end,
+        body.swal2-toast-shown .swal2-container.swal2-top-right {
+            top: 0;
+            right: 0;
+            bottom: auto;
+            left: auto
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top-left,
+        body.swal2-toast-shown .swal2-container.swal2-top-start {
+            top: 0;
+            right: auto;
+            bottom: auto;
+            left: 0
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center-left,
+        body.swal2-toast-shown .swal2-container.swal2-center-start {
+            top: 50%;
+            right: auto;
+            bottom: auto;
+            left: 0;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center {
+            top: 50%;
+            right: auto;
+            bottom: auto;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center-end,
+        body.swal2-toast-shown .swal2-container.swal2-center-right {
+            top: 50%;
+            right: 0;
+            bottom: auto;
+            left: auto;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom-left,
+        body.swal2-toast-shown .swal2-container.swal2-bottom-start {
+            top: auto;
+            right: auto;
+            bottom: 0;
+            left: 0
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom {
+            top: auto;
+            right: auto;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom-end,
+        body.swal2-toast-shown .swal2-container.swal2-bottom-right {
+            top: auto;
+            right: 0;
+            bottom: 0;
+            left: auto
+        }
+    </style>
+    <script src="/perkasa2/jquery/jquery.overlayScrollbars.min.js" async=""></script>
+    <script src="/perkasa2/js/chartjs-plugin-annotation.min.js" async=""></script>
+    <script src="/perkasa2/js/chartjs-plugin-datalabels.min.js" async=""></script>
+    <script src="/perkasa2/adminlte3/js/adminlte.js" async=""></script>
+    <script src="/perkasa2/bootstrap4/js/bootstrap.bundle.min.js" async=""></script>
+    <script src="/perkasa2/plugins/select2/js/select2.full.min.js" async=""></script>
+    <script src="/perkasa2/jquery/jqueryfileupload.min.js" async=""></script>
+    <script src="/perkasa2/jquery/typeahead.jquery.min.js" async=""></script>
+    <script src="/perkasa2/colorbox/jquery.colorbox-min.js" async=""></script>
+    <script src="/perkasa2/js/pdfobject.min.js" async=""></script>
+    <script src="/perkasa2/jquery/jquery.ewjtable.min.js" async=""></script>
+    <script src="/perkasa2/js/ew.min.js" async=""></script>
+    <script src="/perkasa2/js/userfn.js" async=""></script>
+    <script src="/perkasa2/js/userevent.js" async=""></script>
+    <script src="/perkasa2/js/tempusdominus-bootstrap-4.js" async=""></script>
+    <script src="/perkasa2/js/ewdatetimepicker.js" async=""></script>
+</head>
+
+<body class="layout-fixed" dir="ltr" data-new-gr-c-s-check-loaded="14.1071.0" data-gr-ext-installed=""
+    style="height: auto;">
+    <div class="wrapper ew-layout">
+        <!-- Main Header -->
+        <!-- Navbar -->
+
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper" style="min-height: 362px; margin-left: 0px;">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <script>
+                        loadjs.ready("head", function () {
+                            // Write your client script here, no need to add script tags.
+                        });
+                    </script>
+                    <script>
+                        var flogin;
+                        loadjs.ready("head", function () {
+                            var $ = jQuery;
+                            flogin = new ew.Form("flogin");
+
+                            // Add fields
+                            flogin.addFields([
+                                ["username", ew.Validators.required(ew.language.phrase("UserName")),
+                                    false],
+                                ["password", ew.Validators.required(ew.language.phrase("Password")),
+                                    false]
+                            ]);
+
+                            // Captcha
+                            flogin.addField("captcha", ew.Validators.captcha, false);
+                            // Set invalid fields
+                            $(function () {
+                                flogin.setInvalid();
+                            });
+
+                            // Validate
+                            flogin.validate = function () {
+                                if (!this.validateRequired)
+                                    return true; // Ignore validation
+                                var $ = jQuery,
+                                    fobj = this.getForm();
+
+                                // Validate fields
+                                if (!this.validateFields())
+                                    return false;
+
+                                // Call Form_CustomValidate event
+                                if (!this.customValidate(fobj)) {
+                                    this.focus();
+                                    return false;
+                                }
+                                return true;
+                            }
+
+                            // Form_CustomValidate
+                            flogin.customValidate = function (fobj) { // DO NOT CHANGE THIS LINE!
+                                // Your custom validation code here, return false if invalid.
+                                return true;
+                            }
+
+                            // Use JavaScript validation
+                            flogin.validateRequired = true;
+                            loadjs.done("flogin");
+                        });
+                    </script>
+
+                    <form name="flogin" id="flogin" class="ew-form ew-login-form" action="/perkasa2/login"
+                        method="post">
+                        <input type="hidden" name="csrf_name" value="csrf62e86eaf5f1f4">
+                        <input type="hidden" name="csrf_value" value="9c544238edfa9905bb4b2bc5431ff11b">
+
+                        <input type="hidden" name="modal" value="0">
+                        <div class="ew-login-box">
+                            <div class="login-logo"></div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="login-box-msg">Sign in</p>
+                                    <div class="form-group row">
+                                        <input type="text" name="username" id="username" autocomplete="username"
+                                            value="" placeholder="User Name" class="form-control ew-control">
+                                        <div class="invalid-feedback">Please enter username</div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="input-group"><input type="password" name="password" id="password"
+                                                autocomplete="current-password" placeholder="Password"
+                                                class="form-control ew-control">
+                                            <div class="input-group-append"><button type="button"
+                                                    class="btn btn-default ew-toggle-password rounded-right"
+                                                    onclick="ew.togglePassword(event);"><i
+                                                        class="fas fa-eye"></i></button></div>
+                                        </div>
+                                        <div class="invalid-feedback">Please enter password</div>
+                                    </div>
+                                    <button class="btn btn-primary ew-btn" name="btn-submit" id="btn-submit"
+                                        type="submit">Login</button>
+                                    <div class="social-auth-links text-center mt-3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <script>
+                        loadjs.ready("load", function () {
+                            // Write your startup script here, no need to add script tags.
+                        });
+                    </script>
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer" style="
+        margin-left: 0px;
+    ">
+            <!-- ** Note: Only licensed users are allowed to change the copyright statement. ** -->
+            <div class="ew-footer-text">©2021 KPU. All rights reserved.</div>
+            <div class="float-right d-none d-sm-inline-block"></div>
+        </footer>
+        <div id="sidebar-overlay"></div>
+    </div>
+    <!-- ./wrapper -->
+    <script>
+        loadjs.done("wrapper");
+    </script>
+    <!-- template upload (for file upload) -->
+    <script id="template-upload" type="text/html">
+    {{for files}}
+        <tr class="template-upload">
+            <td>
+                <span class="preview"></span>
+            </td>
+            <td>
+                <p class="name">{{:name}}</p>
+                <p class="error"></p>
+            </td>
+            <td>
+                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar bg-success" style="width: 0%;"></div></div>
+            </td>
+            <td>
+                {{if !#index && !~root.options.autoUpload}}
+                <button class="btn btn-default btn-sm start" disabled>Start</button>
+                {{/if}}
+                {{if !#index}}
+                <button class="btn btn-default btn-sm cancel">Cancel</button>
+                {{/if}}
+            </td>
+        </tr>
+    {{/for}}
+    </script>
+    <!-- template download (for file upload) -->
+    <script id="template-download" type="text/html">
+    {{for files}}
+        <tr class="template-download">
+            <td>
+                <span class="preview">
+                    {{if !exists}}
+                    <span class="error">File not found</span>
+                    {{else url && extension == "pdf"}}
+                    <div class="ew-pdfobject" data-url="{{>url}}" style="width: 200px;"></div>
+                    {{else url && extension == "mp3"}}
+                    <audio controls><source type="audio/mpeg" src="{{>url}}"></audio>
+                    {{else url && extension == "mp4"}}
+                    <video controls><source type="video/mp4" src="{{>url}}"></video>
+                    {{else thumbnailUrl}}
+                    <a href="{{>url}}" title="{{>name}}" download="{{>name}}" class="ew-lightbox"><img class="ew-lazy" loading="lazy" src="{{>thumbnailUrl}}"></a>
+                    {{/if}}
+                </span>
+            </td>
+            <td>
+                <p class="name">
+                    {{if !exists}}
+                    <span class="text-muted">{{:name}}</span>
+                    {{else url && (extension == "pdf" || thumbnailUrl) && extension != "mp3" && extension != "mp4"}}
+                    <a href="{{>url}}" title="{{>name}}" target="_blank">{{:name}}</a>
+                    {{else url}}
+                    <a href="{{>url}}" title="{{>name}}" download="{{>name}}">{{:name}}</a>
+                    {{else}}
+                    <span>{{:name}}</span>
+                    {{/if}}
+                </p>
+                {{if error}}
+                <div><span class="error">{{:error}}</span></div>
+                {{/if}}
+            </td>
+            <td>
+                <span class="size">{{:~root.formatFileSize(size)}}</span>
+            </td>
+            <td>
+                {{if !~root.options.readonly && deleteUrl}}
+                <button class="btn btn-default btn-sm delete" data-type="{{>deleteType}}" data-url="{{>deleteUrl}}">Delete</button>
+                {{else !~root.options.readonly}}
+                <button class="btn btn-default btn-sm cancel">Cancel</button>
+                {{/if}}
+            </td>
+        </tr>
+    {{/for}}
+    </script>
+    <!-- modal dialog -->
+    <div id="ew-modal-dialog" class="modal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- modal lookup dialog -->
+    <div id="ew-modal-lookup-dialog" class="modal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <div class="modal-tools"><input type="search" name="sv" class="form-control" placeholder="Search">
+                    </div>
+                </div>
+                <div class="modal-body p-0"></div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- import dialog -->
+    <div id="ew-import-dialog" class="modal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="importfiles" title=" " name="importfiles[]"
+                            multiple="" lang="en">
+                        <label class="custom-file-label ew-file-label" for="importfiles">Choose files</label>
+                    </div>
+                    <div class="message d-none mt-3"></div>
+                    <div class="progress d-none mt-3">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-default ew-close-btn"
+                        data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <!-- tooltip -->
+    <div id="ew-tooltip"></div>
+    <!-- drill down -->
+    <div id="ew-drilldown-panel"></div>
+    <script>
+        loadjs.ready(ew.bundleIds, function () {
+            if (!loadjs.isDefined("foot"))
+                loadjs.done("foot");
+        });
+    </script>
+
+
+    <div id="cboxOverlay" style="display: none;"></div>
+    <div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;">
+        <div id="cboxWrapper">
+            <div>
+                <div id="cboxTopLeft" style="float: left;"></div>
+                <div id="cboxTopCenter" style="float: left;"></div>
+                <div id="cboxTopRight" style="float: left;"></div>
+            </div>
+            <div style="clear: left;">
+                <div id="cboxMiddleLeft" style="float: left;"></div>
+                <div id="cboxContent" style="float: left;">
+                    <div id="cboxTitle" style="float: left;"></div>
+                    <div id="cboxCurrent" style="float: left;"></div><button type="button"
+                        id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button type="button"
+                        id="cboxSlideshow"></button>
+                    <div id="cboxLoadingOverlay" style="float: left;"></div>
+                    <div id="cboxLoadingGraphic" style="float: left;"></div>
+                </div>
+                <div id="cboxMiddleRight" style="float: left;"></div>
+            </div>
+            <div style="clear: left;">
+                <div id="cboxBottomLeft" style="float: left;"></div>
+                <div id="cboxBottomCenter" style="float: left;"></div>
+                <div id="cboxBottomRight" style="float: left;"></div>
+            </div>
+        </div>
+        <div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div>
+    </div>
+</body>
+
+</html>
